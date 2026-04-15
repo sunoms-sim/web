@@ -1,304 +1,1540 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist ERP | Next-Gen Business Software</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>  
-<body class="bg-white text-slate-900 overflow-x-hidden">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okovalo — Enterprise ERP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                </div>
-                <span class="text-xl font-bold tracking-tight text-slate-900">okovalo</span>okovalo</span>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-                <a href="#modules" class="hover:text-blue-600 transition-colors">Modules</a>
-                <a href="#industries" class="hover:text-blue-600 transition-colors">Industries</a>
-                <a href="#comparison" class="hover:text-blue-600 transition-colors">Comparison</a>
-                <a href="#why-us" class="hover:text-blue-600 transition-colors">Why Us</a>
-            </div>
+  :root {
+    --ink: #0a0a08;
+    --ink2: #3a3a35;
+    --ink3: #7a7a72;
+    --paper: #f5f3ee;
+    --paper2: #eeecea;
+    --paper3: #e5e2db;
+    --accent: #c8a96e;
+    --accent2: #1a3a2a;
+    --white: #ffffff;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --radius: 4px;
+    --radius-lg: 12px;
+  }
 
-            <div class="flex items-center gap-4">
-                <button class="bg-blue-600 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-all shadow-md shadow-blue-500/20">
-                    Get Started
-                </button>
-            </div>
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 48px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245, 243, 238, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(10,10,8,0.08);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink2);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    background: var(--ink);
+    color: var(--paper) !important;
+    padding: 9px 20px !important;
+    border-radius: var(--radius);
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--ink2) !important; }
+
+  /* HERO */
+  .hero {
+    padding: 160px 48px 100px;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .eyebrow-text {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(48px, 5vw, 72px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--ink2);
+    line-height: 1.65;
+    max-width: 440px;
+    margin-bottom: 44px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover { background: var(--ink2); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid var(--ink3);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--accent2); border-color: var(--accent2); }
+
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--paper3);
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--ink3);
+    letter-spacing: 0.04em;
+    font-weight: 400;
+  }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    position: relative;
+  }
+
+  .dashboard-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--paper3);
+    padding: 28px;
+    box-shadow: 0 4px 32px rgba(10,10,8,0.08);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .dash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .dash-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  .dash-period {
+    font-size: 11px;
+    color: var(--ink3);
+    background: var(--paper2);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .dash-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .metric-box {
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .metric-val {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .metric-lbl {
+    font-size: 10px;
+    color: var(--ink3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .metric-delta {
+    font-size: 10px;
+    color: #2d7a4f;
+    font-weight: 500;
+  }
+
+  .chart-area {
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .bar {
+    flex: 1;
+    border-radius: 3px 3px 0 0;
+    background: var(--paper3);
+    transition: background 0.3s;
+  }
+
+  .bar.active { background: var(--ink); }
+  .bar.accent { background: var(--accent); }
+
+  .dash-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px solid var(--paper2);
+    font-size: 12px;
+  }
+
+  .dash-row-label { color: var(--ink2); }
+  .dash-row-val { font-weight: 500; color: var(--ink); }
+  .dash-row-status {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .status-ok { background: #e8f5ee; color: #2d7a4f; }
+  .status-warn { background: #fef3e2; color: #b45309; }
+
+  .float-badge {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--paper3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 16px rgba(10,10,8,0.1);
+    font-size: 12px;
+    animation: float2 5s ease-in-out infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-5px) rotate(1deg); }
+  }
+
+  .badge-top { top: -24px; right: 20px; animation-delay: -2s; }
+  .badge-bot { bottom: -20px; left: 10px; animation-delay: -4s; }
+
+  .badge-icon {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .badge-green { background: #e8f5ee; color: #2d7a4f; }
+  .badge-amber { background: #fef3e2; color: #b45309; }
+
+  /* LOGOS */
+  .logos-section {
+    background: var(--ink);
+    padding: 40px 48px;
+  }
+
+  .logos-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .logos-label {
+    font-size: 11px;
+    color: rgba(245,243,238,0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .logos-list {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .logo-item {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: rgba(245,243,238,0.3);
+    letter-spacing: -0.01em;
+    transition: color 0.3s;
+  }
+
+  .logo-item:hover { color: rgba(245,243,238,0.7); }
+
+  /* FEATURES */
+  .features {
+    padding: 120px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 72px;
+    gap: 48px;
+  }
+
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 3.5vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 480px;
+  }
+
+  .section-title em { font-style: italic; color: var(--ink3); }
+
+  .section-desc {
+    max-width: 320px;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink2);
+    line-height: 1.7;
+    padding-top: 60px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--paper3);
+    border: 1px solid var(--paper3);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .feature-card {
+    background: var(--paper);
+    padding: 36px 28px;
+    transition: background 0.25s;
+    cursor: default;
+  }
+
+  .feature-card:hover { background: var(--white); }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .icon-green { background: #e8f5ee; }
+  .icon-amber { background: #fef3e2; }
+  .icon-blue { background: #e8f0fe; }
+  .icon-rose { background: #fce8ee; }
+
+  .feature-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink2);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .feature-specs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .feature-specs li {
+    font-size: 12px;
+    color: var(--ink3);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .feature-specs li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* COMPARISON */
+  .comparison {
+    background: var(--ink);
+    padding: 120px 48px;
+  }
+
+  .comparison-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .comparison .section-tag { color: rgba(245,243,238,0.35); }
+  .comparison .section-title { color: var(--paper); }
+  .comparison .section-title em { color: rgba(245,243,238,0.4); }
+
+  .comparison-table {
+    margin-top: 64px;
+    border: 1px solid rgba(245,243,238,0.1);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .ct-head {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr;
+    background: rgba(245,243,238,0.04);
+    border-bottom: 1px solid rgba(245,243,238,0.08);
+  }
+
+  .ct-head-cell {
+    padding: 20px 28px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .ct-head-cell:first-child { color: rgba(245,243,238,0.3); }
+
+  .ct-head-okovalo {
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ct-head-other { color: rgba(245,243,238,0.3); }
+
+  .ct-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr;
+    border-bottom: 1px solid rgba(245,243,238,0.06);
+    transition: background 0.2s;
+  }
+
+  .ct-row:last-child { border-bottom: none; }
+  .ct-row:hover { background: rgba(245,243,238,0.03); }
+
+  .ct-cell {
+    padding: 20px 28px;
+    font-size: 14px;
+    color: rgba(245,243,238,0.5);
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ct-cell.feature-name-cell { color: rgba(245,243,238,0.7); font-weight: 400; }
+  .ct-cell.okovalo-cell { color: var(--paper); font-weight: 400; }
+
+  .check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  .check-yes { background: #2d7a4f; color: white; }
+  .check-no { background: rgba(245,243,238,0.08); color: rgba(245,243,238,0.25); }
+
+  /* INDUSTRIES */
+  .industries {
+    padding: 120px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .industry-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 64px;
+  }
+
+  .industry-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 3/4;
+    cursor: default;
+  }
+
+  .industry-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    transition: transform 0.4s ease;
+  }
+
+  .industry-card:hover .industry-bg { transform: scale(1.05); }
+
+  .ind-1 { background: linear-gradient(135deg, #1a2e1a, #2d4a2d); }
+  .ind-2 { background: linear-gradient(135deg, #1a2438, #2d3d58); }
+  .ind-3 { background: linear-gradient(135deg, #2e1a1a, #4a2d2d); }
+  .ind-4 { background: linear-gradient(135deg, #1a1a2e, #2d2d4a); }
+  .ind-5 { background: linear-gradient(135deg, #2e2a1a, #4a442d); }
+  .ind-6 { background: linear-gradient(135deg, #1a2e2a, #2d4a44); }
+  .ind-7 { background: linear-gradient(135deg, #2a1a2e, #442d4a); }
+  .ind-8 { background: linear-gradient(135deg, #2e1a24, #4a2d38); }
+
+  .industry-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+
+  .industry-name {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .industry-count {
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    background: var(--paper2);
+    padding: 120px 48px;
+  }
+
+  .testimonials-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .testimonial-card {
+    background: var(--white);
+    border: 1px solid var(--paper3);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(10,10,8,0.08);
+  }
+
+  .testimonial-quote {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .av-1 { background: #e8f5ee; color: #2d7a4f; }
+  .av-2 { background: #e8f0fe; color: #4a6cf7; }
+  .av-3 { background: #fef3e2; color: #b45309; }
+
+  .author-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .author-role {
+    font-size: 12px;
+    color: var(--ink3);
+    font-weight: 300;
+  }
+
+  .company-logo-text {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* WHY US */
+  .why-us {
+    padding: 120px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .why-item {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--paper3);
+  }
+
+  .why-item:first-child { border-top: 1px solid var(--paper3); }
+
+  .why-num {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--ink3);
+    padding-top: 4px;
+    flex-shrink: 0;
+    width: 24px;
+  }
+
+  .why-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .why-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink2);
+    line-height: 1.65;
+  }
+
+  .why-visual {
+    position: relative;
+  }
+
+  .setup-timeline {
+    background: var(--white);
+    border: 1px solid var(--paper3);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(10,10,8,0.06);
+  }
+
+  .timeline-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .tl-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+  }
+
+  .tl-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+    width: 20px;
+  }
+
+  .tl-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .tl-dot.done { background: var(--accent2); }
+  .tl-dot.active { background: var(--accent); box-shadow: 0 0 0 3px rgba(200,169,110,0.2); }
+  .tl-dot.pending { background: var(--paper3); }
+
+  .tl-line {
+    width: 1px;
+    flex: 1;
+    background: var(--paper3);
+    margin: 2px 0;
+  }
+
+  .tl-day {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink3);
+    min-width: 36px;
+    padding-top: 2px;
+  }
+
+  .tl-content { flex: 1; }
+
+  .tl-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .tl-sub {
+    font-size: 12px;
+    color: var(--ink3);
+    font-weight: 300;
+  }
+
+  .tl-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  .badge-done { background: #e8f5ee; color: #2d7a4f; }
+  .badge-live { background: #fef3e2; color: #b45309; }
+
+  /* CTA BANNER */
+  .cta-banner {
+    background: var(--accent2);
+    padding: 100px 48px;
+    text-align: center;
+  }
+
+  .cta-banner h2 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 4vw, 60px);
+    color: var(--paper);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-banner h2 em { font-style: italic; opacity: 0.6; }
+
+  .cta-banner p {
+    font-size: 17px;
+    color: rgba(245,243,238,0.6);
+    font-weight: 300;
+    margin-bottom: 44px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-banner .btn-primary {
+    background: var(--accent);
+    color: var(--ink);
+    padding: 16px 36px;
+    font-size: 15px;
+  }
+
+  .cta-banner .btn-primary:hover { background: #d4b87a; }
+
+  .cta-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: rgba(245,243,238,0.35);
+    letter-spacing: 0.04em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 64px 48px 40px;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 64px;
+  }
+
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--paper);
+    margin-bottom: 16px;
+  }
+
+  .footer-tagline {
+    font-size: 13px;
+    color: rgba(245,243,238,0.35);
+    font-weight: 300;
+    line-height: 1.65;
+    max-width: 240px;
+  }
+
+  .footer-col-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,243,238,0.3);
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    color: rgba(245,243,238,0.5);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--paper); }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 32px;
+    border-top: 1px solid rgba(245,243,238,0.08);
+    font-size: 12px;
+    color: rgba(245,243,238,0.25);
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 120px 24px 80px; min-height: auto; gap: 48px; }
+    .features { padding: 80px 24px; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .section-header { flex-direction: column; }
+    .section-desc { padding-top: 0; }
+    .comparison { padding: 80px 24px; }
+    .industry-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials { padding: 80px 24px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .why-us { grid-template-columns: 1fr; padding: 80px 24px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">okovalo</div>
+  <ul class="nav-links">
+    <li><a href="#features">Modules</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#comparison">Compare</a></li>
+    <li><a href="#" class="nav-cta">Start Free Trial</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Enterprise Resource Planning</span>
+    </div>
+    <h1>The ERP that gets<br><em>out of your way</em></h1>
+    <p class="hero-sub">One platform to run finance, supply chain, HR, and operations — designed for teams that actually want to use it. Live in days, not months.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Start Free Trial →</a>
+      <a href="#" class="btn-ghost">Watch 3-min demo ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2,400+</div>
+        <div class="stat-label">Companies worldwide</div>
+      </div>
+      <div>
+        <div class="stat-num">4 days</div>
+        <div class="stat-label">Average setup time</div>
+      </div>
+      <div>
+        <div class="stat-num">98.9%</div>
+        <div class="stat-label">Uptime SLA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="float-badge badge-top">
+      <span class="badge-icon badge-green">✓</span>
+      Invoice approved — $48,200
+    </div>
+    <div class="dashboard-card">
+      <div class="dash-header">
+        <span class="dash-title">Operations Overview</span>
+        <span class="dash-period">This quarter</span>
+      </div>
+      <div class="dash-metrics">
+        <div class="metric-box">
+          <div class="metric-val">$2.4M</div>
+          <div class="metric-lbl">Revenue</div>
+          <div class="metric-delta">↑ 18.4%</div>
         </div>
-    </nav>
-
-    <!-- 1. Hero Section -->
-    <section class="relative pt-40 pb-20 hero-gradient border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
-                Streamline Your <br/>
-                <span class="text-blue-600">Enterprise Operations</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-lg text-slate-500 mb-10 leading-relaxed">
-                A minimalist, powerful ERP designed to bring your finance, HR, and customer relationships into one clear view.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <button class="w-full sm:w-auto bg-blue-600 text-white px-10 py-4 rounded-full font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
-                    Start Free Trial
-                </button>
-                <button class="w-full sm:w-auto bg-white text-slate-700 border border-slate-200 px-10 py-4 rounded-full font-semibold hover:border-slate-300 hover:bg-slate-50 transition-all">
-                    View Demo
-                </button>
-            </div>
-            
-            <!-- Hero Image -->
-            <div class="relative max-w-5xl mx-auto">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2015" alt="ERP Dashboard" class="rounded-2xl border border-slate-200 shadow-2xl w-full object-cover aspect-[16/9]">
-            </div>
+        <div class="metric-box">
+          <div class="metric-val">94%</div>
+          <div class="metric-lbl">Fulfillment</div>
+          <div class="metric-delta">↑ 3.1%</div>
         </div>
-    </section>
-
-    <!-- 2. Modules Section -->
-    <section id="modules" class="py-24 border-b border-slate-100 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 tracking-tight">Core Modules</h2>
-                <p class="text-slate-500">Everything you need to run your business efficiently.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Finance -->
-                <div class="module-card p-10 rounded-3xl border border-slate-100 bg-white transition-all duration-300 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Finance</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Automate your accounting, invoicing, and financial reporting with precision.</p>
-                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=500" alt="Finance Module" class="rounded-xl w-full h-32 object-cover mt-auto">
-                </div>
-
-                <!-- HR -->
-                <div class="module-card p-10 rounded-3xl border border-slate-100 bg-white transition-all duration-300 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Human Resources</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Manage recruitment, payroll, and employee performance seamlessly.</p>
-                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=500" alt="HR Module" class="rounded-xl w-full h-32 object-cover mt-auto">
-                </div>
-
-                <!-- CRM -->
-                <div class="module-card p-10 rounded-3xl border border-slate-100 bg-white transition-all duration-300 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">CRM</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Track leads, manage sales pipelines, and improve customer satisfaction.</p>
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=500" alt="CRM Module" class="rounded-xl w-full h-32 object-cover mt-auto">
-                </div>
-            </div>
+        <div class="metric-box">
+          <div class="metric-val">12d</div>
+          <div class="metric-lbl">DSO</div>
+          <div class="metric-delta">↓ 8 days</div>
         </div>
-    </section>
+      </div>
+      <div class="chart-area">
+        <div class="bar" style="height:35%"></div>
+        <div class="bar" style="height:52%"></div>
+        <div class="bar" style="height:48%"></div>
+        <div class="bar" style="height:65%"></div>
+        <div class="bar" style="height:58%"></div>
+        <div class="bar active" style="height:82%"></div>
+        <div class="bar accent" style="height:90%"></div>
+        <div class="bar" style="height:72%"></div>
+        <div class="bar" style="height:68%"></div>
+        <div class="bar" style="height:85%"></div>
+        <div class="bar" style="height:78%"></div>
+        <div class="bar" style="height:95%"></div>
+      </div>
+      <div class="dash-row">
+        <span class="dash-row-label">Purchase Orders</span>
+        <span class="dash-row-val">142 open</span>
+        <span class="dash-row-status status-ok">On track</span>
+      </div>
+      <div class="dash-row">
+        <span class="dash-row-label">Payroll cycle</span>
+        <span class="dash-row-val">Mar 31</span>
+        <span class="dash-row-status status-warn">3 days</span>
+      </div>
+      <div class="dash-row">
+        <span class="dash-row-label">Cash position</span>
+        <span class="dash-row-val">$1.82M</span>
+        <span class="dash-row-status status-ok">Healthy</span>
+      </div>
+    </div>
+    <div class="float-badge badge-bot">
+      <span class="badge-icon badge-amber">⚡</span>
+      Payroll processed — 284 employees
+    </div>
+  </div>
+</section>
 
-    <!-- 3. Industry Section -->
-    <section id="industries" class="py-24 border-b border-slate-100 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 tracking-tight">Industries We Serve</h2>
-                <p class="text-slate-500">Tailored solutions for modern enterprises.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Manufacturing">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <h4 class="text-lg font-bold text-white">Manufacturing</h4>
-                    </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Retail">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <h4 class="text-lg font-bold text-white">Retail</h4>
-                    </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Healthcare">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <h4 class="text-lg font-bold text-white">Healthcare</h4>
-                    </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Technology">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <h4 class="text-lg font-bold text-white">Technology</h4>
-                    </div>
-                </div>
-            </div>
+<!-- LOGOS -->
+<div class="logos-section">
+  <div class="logos-inner">
+    <span class="logos-label">Trusted by</span>
+    <div class="logos-list">
+      <span class="logo-item">Meridian Group</span>
+      <span class="logo-item">Vanterra Co.</span>
+      <span class="logo-item">Luma Industries</span>
+      <span class="logo-item">Strata Holdings</span>
+      <span class="logo-item">Verda Retail</span>
+      <span class="logo-item">Nuvola Tech</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-tag">Core Modules</div>
+      <h2 class="section-title">Everything your business<br>needs to <em>run smoothly</em></h2>
+    </div>
+    <p class="section-desc">Each module works standalone or as part of a unified system. No forced bundles, no hidden add-ons. Pay for what you use.</p>
+  </div>
+  <div class="features-grid fade-up">
+    <div class="feature-card">
+      <div class="feature-icon icon-green">💰</div>
+      <div class="feature-name">Financial Management</div>
+      <div class="feature-desc">Real-time P&L, automated reconciliation, multi-currency, and audit trails that satisfy any compliance requirement.</div>
+      <ul class="feature-specs">
+        <li>Multi-entity consolidation</li>
+        <li>AR/AP automation</li>
+        <li>IFRS & GAAP ready</li>
+        <li>Budget vs actual tracking</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-amber">📦</div>
+      <div class="feature-name">Supply Chain</div>
+      <div class="feature-desc">Demand forecasting, inventory optimization, and vendor management — from PO to delivery in one flow.</div>
+      <ul class="feature-specs">
+        <li>Demand forecasting AI</li>
+        <li>Multi-warehouse support</li>
+        <li>Vendor portal included</li>
+        <li>Landed cost tracking</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-blue">👥</div>
+      <div class="feature-name">Customer Relations</div>
+      <div class="feature-desc">A CRM built into the same system as your finance and ops — no more data silos between sales and delivery.</div>
+      <ul class="feature-specs">
+        <li>Pipeline & deal tracking</li>
+        <li>Linked to invoicing</li>
+        <li>Contract management</li>
+        <li>Customer health scores</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-rose">🧑‍💼</div>
+      <div class="feature-name">Human Resources</div>
+      <div class="feature-desc">Payroll, leave, org charts, and performance — all with role-based access controls your IT team will appreciate.</div>
+      <ul class="feature-specs">
+        <li>Payroll in 40+ countries</li>
+        <li>Self-service employee portal</li>
+        <li>Recruitment pipeline</li>
+        <li>Time & attendance</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison" id="comparison">
+  <div class="comparison-inner">
+    <div class="fade-up">
+      <div class="section-tag">How We Compare</div>
+      <h2 class="section-title" style="color: var(--paper);">Not just different.<br><em>Measurably better.</em></h2>
+    </div>
+    <div class="comparison-table fade-up">
+      <div class="ct-head">
+        <div class="ct-head-cell">Feature</div>
+        <div class="ct-head-cell ct-head-okovalo">● Okovalo</div>
+        <div class="ct-head-cell ct-head-other">Legacy ERPs</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-cell feature-name-cell">Setup time</div>
+        <div class="ct-cell okovalo-cell"><span class="check check-yes">✓</span> 4–7 days</div>
+        <div class="ct-cell"><span class="check check-no">–</span> 3–9 months</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-cell feature-name-cell">Interface</div>
+        <div class="ct-cell okovalo-cell"><span class="check check-yes">✓</span> Modern, role-based</div>
+        <div class="ct-cell"><span class="check check-no">–</span> Cluttered, outdated</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-cell feature-name-cell">Pricing model</div>
+        <div class="ct-cell okovalo-cell"><span class="check check-yes">✓</span> Transparent flat fee</div>
+        <div class="ct-cell"><span class="check check-no">–</span> Per-module licensing</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-cell feature-name-cell">Cloud architecture</div>
+        <div class="ct-cell okovalo-cell"><span class="check check-yes">✓</span> 100% cloud-native</div>
+        <div class="ct-cell"><span class="check check-no">–</span> Often on-premise</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-cell feature-name-cell">Implementation support</div>
+        <div class="ct-cell okovalo-cell"><span class="check check-yes">✓</span> Included</div>
+        <div class="ct-cell"><span class="check check-no">–</span> $10K–$500K extra</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-cell feature-name-cell">API & integrations</div>
+        <div class="ct-cell okovalo-cell"><span class="check check-yes">✓</span> REST + webhooks, free</div>
+        <div class="ct-cell"><span class="check check-no">–</span> Paid add-on</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-cell feature-name-cell">Mobile app</div>
+        <div class="ct-cell okovalo-cell"><span class="check check-yes">✓</span> iOS & Android native</div>
+        <div class="ct-cell"><span class="check check-no">–</span> Rarely available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-tag">Industries</div>
+      <h2 class="section-title">Built for the<br>way you <em>actually work</em></h2>
+    </div>
+    <p class="section-desc">Pre-configured workflows for your industry — not generic templates you spend months customizing.</p>
+  </div>
+  <div class="industry-grid fade-up">
+    <div class="industry-card">
+      <div class="industry-bg ind-1">🏭</div>
+      <div class="industry-overlay">
+        <div class="industry-name">Manufacturing</div>
+        <div class="industry-count">BOM, MRP, shop floor</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-bg ind-2">🛍️</div>
+      <div class="industry-overlay">
+        <div class="industry-name">Retail</div>
+        <div class="industry-count">POS, omnichannel, stock</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-bg ind-3">🏥</div>
+      <div class="industry-overlay">
+        <div class="industry-name">Healthcare</div>
+        <div class="industry-count">Compliance, billing, HR</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-bg ind-4">🎓</div>
+      <div class="industry-overlay">
+        <div class="industry-name">Education</div>
+        <div class="industry-count">Finance, payroll, grants</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-bg ind-5">🏗️</div>
+      <div class="industry-overlay">
+        <div class="industry-name">Construction</div>
+        <div class="industry-count">Project costing, subcontractors</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-bg ind-6">🚢</div>
+      <div class="industry-overlay">
+        <div class="industry-name">Wholesale & Dist.</div>
+        <div class="industry-count">Logistics, warehousing</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-bg ind-7">💻</div>
+      <div class="industry-overlay">
+        <div class="industry-name">Technology</div>
+        <div class="industry-count">SaaS billing, services</div>
+      </div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-bg ind-8">🏦</div>
+      <div class="industry-overlay">
+        <div class="industry-name">Finance</div>
+        <div class="industry-count">Regulatory, multi-entity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-header fade-up">
+      <div>
+        <div class="section-tag">Customer Stories</div>
+        <h2 class="section-title">Real teams.<br><em>Real results.</em></h2>
+      </div>
+      <p class="section-desc">We don't publish testimonials without verified sources. These are real customers you can call.</p>
+    </div>
+    <div class="testimonials-grid fade-up">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">"We cut our month-end close from 14 days to 3. The finance team stopped working weekends."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar av-1">SJ</div>
+          <div>
+            <div class="author-name">Sarah Jenkins</div>
+            <div class="author-role">CFO, Meridian Group · 340 employees</div>
+          </div>
+          <span class="company-logo-text">Meridian</span>
         </div>
-    </section>
-
-    <!-- 4. Comparison Section -->
-    <section id="comparison" class="py-24 border-b border-slate-100 bg-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 tracking-tight">How We Compare</h2>
-                <p class="text-slate-500">See the difference between us and legacy ERPs.</p>
-            </div>
-
-            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="border-b border-slate-200">
-                            <th class="px-8 py-6 text-sm font-semibold text-slate-500 uppercase tracking-wider bg-white">Feature</th>
-                            <th class="px-8 py-6 text-sm font-bold text-blue-600 uppercase tracking-wider bg-blue-50/30 border-l border-slate-200">Our ERP</th>
-                            <th class="px-8 py-6 text-sm font-semibold text-slate-400 uppercase tracking-wider bg-white border-l border-slate-200">Other ERPs</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100">
-                        <tr>
-                            <td class="px-8 py-5 text-sm text-slate-700 font-medium">Interface</td>
-                            <td class="px-8 py-5 text-sm text-blue-600 font-semibold bg-blue-50/30 border-l border-slate-200">Minimalist & Intuitive</td>
-                            <td class="px-8 py-5 text-sm text-slate-500 border-l border-slate-200">Cluttered & Complex</td>
-                        </tr>
-                        <tr>
-                            <td class="px-8 py-5 text-sm text-slate-700 font-medium">Setup Time</td>
-                            <td class="px-8 py-5 text-sm text-blue-600 font-semibold bg-blue-50/30 border-l border-slate-200">Days</td>
-                            <td class="px-8 py-5 text-sm text-slate-500 border-l border-slate-200">Months</td>
-                        </tr>
-                        <tr>
-                            <td class="px-8 py-5 text-sm text-slate-700 font-medium">Pricing</td>
-                            <td class="px-8 py-5 text-sm text-blue-600 font-semibold bg-blue-50/30 border-l border-slate-200">Transparent Flat Fee</td>
-                            <td class="px-8 py-5 text-sm text-slate-500 border-l border-slate-200">Hidden Costs</td>
-                        </tr>
-                        <tr>
-                            <td class="px-8 py-5 text-sm text-slate-700 font-medium">Cloud Native</td>
-                            <td class="px-8 py-5 text-sm text-blue-600 font-semibold bg-blue-50/30 border-l border-slate-200">Yes (100% Web)</td>
-                            <td class="px-8 py-5 text-sm text-slate-500 border-l border-slate-200">Often On-Premise</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-quote">"Went live in 6 days. Our last ERP took 8 months and we still needed consultants to fix it."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar av-2">MC</div>
+          <div>
+            <div class="author-name">Michael Chang</div>
+            <div class="author-role">COO, Luma Industries · 1,200 employees</div>
+          </div>
+          <span class="company-logo-text">Luma</span>
         </div>
-    </section>
-
-    <!-- 5. Why Us Section -->
-    <section id="why-us" class="py-24 border-b border-slate-100 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-3xl font-bold mb-6 tracking-tight">Why Choose Us?</h2>
-                    <p class="text-slate-500 mb-8 leading-relaxed">
-                        We built this platform with a single goal: to remove the friction from enterprise software. No bloatware, no confusing menus. Just the tools you need to grow your business, presented beautifully.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <div class="mt-1 bg-blue-100 text-blue-600 rounded-full p-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-slate-800">Zero Learning Curve</h4>
-                                <p class="text-sm text-slate-500">Designed like modern consumer apps, your team will understand it instantly.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="mt-1 bg-blue-100 text-blue-600 rounded-full p-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-slate-800">Bank-Grade Security</h4>
-                                <p class="text-sm text-slate-500">End-to-end encryption to keep your enterprise data completely safe.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="mt-1 bg-blue-100 text-blue-600 rounded-full p-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-slate-800">Dedicated Support</h4>
-                                <p class="text-sm text-slate-500">24/7 access to our engineering team to ensure smooth operations.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" alt="Team meeting" class="rounded-3xl border border-slate-100 shadow-lg object-cover w-full h-[400px]">
-                </div>
-            </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-quote">"Our warehouse accuracy jumped from 91% to 99.4% in the first quarter. The ROI was immediate."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar av-3">ER</div>
+          <div>
+            <div class="author-name">Emma Roberts</div>
+            <div class="author-role">VP Operations, Verda Retail · 80 locations</div>
+          </div>
+          <span class="company-logo-text">Verda</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- 6. Customer Feedback Section -->
-    <section id="feedback" class="py-24 border-b border-slate-100 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 tracking-tight">Customer Feedback</h2>
-                <p class="text-slate-500">Don't just take our word for it.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl border border-slate-200 bg-white shadow-sm flex flex-col">
-                    <p class="text-slate-600 italic mb-6 flex-grow">"Switching to this ERP was the best decision for our operations. The minimalist interface cut down our training time to zero."</p>
-                    <div class="flex items-center gap-4 mt-auto">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" alt="Sarah Jenkins" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <h5 class="text-sm font-bold text-slate-900">Sarah Jenkins</h5>
-                            <p class="text-xs text-slate-500">COO, TechFlow</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-8 rounded-2xl border border-slate-200 bg-white shadow-sm flex flex-col">
-                    <p class="text-slate-600 italic mb-6 flex-grow">"Finally, an ERP that isn't a chore to use. The finance module alone saved us 20 hours a week on reconciliation."</p>
-                    <div class="flex items-center gap-4 mt-auto">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100" alt="Michael Chang" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <h5 class="text-sm font-bold text-slate-900">Michael Chang</h5>
-                            <p class="text-xs text-slate-500">Finance Director, Apex Ltd.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-8 rounded-2xl border border-slate-200 bg-white shadow-sm flex flex-col">
-                    <p class="text-slate-600 italic mb-6 flex-grow">"The HR management features are clean and straight to the point. It perfectly aligns with our minimalist company culture."</p>
-                    <div class="flex items-center gap-4 mt-auto">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100" alt="Emma Roberts" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <h5 class="text-sm font-bold text-slate-900">Emma Roberts</h5>
-                            <p class="text-xs text-slate-500">Head of HR, Zenith</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- WHY US -->
+<section class="why-us">
+  <div class="fade-up">
+    <div class="section-tag">Why Okovalo</div>
+    <h2 class="section-title" style="margin-bottom: 48px;">Built on one<br>honest <em>principle</em></h2>
+    <div class="why-item">
+      <span class="why-num">01</span>
+      <div>
+        <div class="why-title">No implementation fees</div>
+        <div class="why-desc">Setup, data migration, and onboarding training are included in every plan. No surprise invoices.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <span class="why-num">02</span>
+      <div>
+        <div class="why-title">Bank-grade security, no jargon</div>
+        <div class="why-desc">SOC 2 Type II, ISO 27001, GDPR compliant. Role-based access, full audit logs, SSO included.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <span class="why-num">03</span>
+      <div>
+        <div class="why-title">A support team that answers</div>
+        <div class="why-desc">Median first response: 4 minutes. Every plan includes a dedicated account manager, not a ticket queue.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <span class="why-num">04</span>
+      <div>
+        <div class="why-title">Your data is yours</div>
+        <div class="why-desc">Full export at any time, in any format. We don't hold your data hostage if you decide to leave.</div>
+      </div>
+    </div>
+  </div>
+  <div class="why-visual fade-up">
+    <div class="setup-timeline">
+      <div class="timeline-title">Typical onboarding — 7 days</div>
+      <div class="tl-item">
+        <div class="tl-dot-col">
+          <div class="tl-dot done"></div>
+          <div class="tl-line"></div>
         </div>
-    </section>
-
-    <!-- 7. Footer -->
-    <footer class="bg-white py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-2">
-                <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
-                    <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                </div>
-                <span class="text-lg font-bold tracking-tight text-slate-900">ERP<span class="text-blue-600">Pro</span></span>
-            </div>
-            
-            <div class="flex gap-8 text-sm text-slate-500 font-medium">
-                <a href="#" class="hover:text-blue-600 transition-colors">Privacy</a>
-                <a href="#" class="hover:text-blue-600 transition-colors">Terms</a>
-                <a href="#" class="hover:text-blue-600 transition-colors">Contact</a>
-            </div>
-            
-            <p class="text-sm text-slate-400">
-                &copy; 2024 ERP Pro. All rights reserved.
-            </p>
+        <div class="tl-day">Day 1</div>
+        <div class="tl-content">
+          <div class="tl-label">Account setup & data import</div>
+          <div class="tl-sub">Chart of accounts, users, permissions</div>
         </div>
-    </footer>
+        <span class="tl-badge badge-done">Done</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot-col">
+          <div class="tl-dot done"></div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-day">Day 2</div>
+        <div class="tl-content">
+          <div class="tl-label">Modules configured</div>
+          <div class="tl-sub">Finance, inventory, HR workflows</div>
+        </div>
+        <span class="tl-badge badge-done">Done</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot-col">
+          <div class="tl-dot done"></div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-day">Day 3–4</div>
+        <div class="tl-content">
+          <div class="tl-label">Team training</div>
+          <div class="tl-sub">Live sessions, role-specific walkthroughs</div>
+        </div>
+        <span class="tl-badge badge-done">Done</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot-col">
+          <div class="tl-dot active"></div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-day">Day 5–6</div>
+        <div class="tl-content">
+          <div class="tl-label">Parallel run & testing</div>
+          <div class="tl-sub">Data validation, edge cases, sign-off</div>
+        </div>
+        <span class="tl-badge badge-live">Active</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot-col">
+          <div class="tl-dot pending"></div>
+        </div>
+        <div class="tl-day">Day 7</div>
+        <div class="tl-content">
+          <div class="tl-label">Go live</div>
+          <div class="tl-sub">Your team, fully operational</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- CTA -->
+<section class="cta-banner">
+  <h2>Ready to run your business<br><em>without the chaos?</em></h2>
+  <p>Start a free 30-day trial. No credit card. No sales call required. Cancel any time.</p>
+  <a href="#" class="btn-primary">Get started free →</a>
+  <div class="cta-note">Free trial · Full access · Setup included</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">okovalo</div>
+        <div class="footer-tagline">Enterprise software that feels like it was built for humans.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Product</div>
+        <ul class="footer-links">
+          <li><a href="#">Modules</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Integrations</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Roadmap</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Customers</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">GDPR</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Okovalo Inc. All rights reserved.</span>
+      <span>SOC 2 Type II · ISO 27001 · GDPR</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
