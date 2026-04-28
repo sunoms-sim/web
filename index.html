@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Okovalo | World's #1 User Friendly Business Suite</title>
+    <title>Okovalo | Excellence in Business</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -11,97 +11,141 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); }
-        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 50%); }
-        .comparison-shadow { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05); }
-        .scrolly-line { stroke-dasharray: 1000; stroke-dashoffset: 1000; }
-        .active-tab { background-color: #2563eb; color: white; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2); }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
-        .video-overlay { background: linear-gradient(0deg, rgba(15, 23, 42, 0.9) 0%, transparent 100%); }
+        :root {
+            --apple-blue: #0071e3;
+            --apple-gray: #f5f5f7;
+            --apple-text: #1d1d1f;
+        }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #fff;
+            color: var(--apple-text);
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: saturate(180%) blur(20px); 
+        }
+        .apple-button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .apple-button:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+        .bento-card {
+            background: var(--apple-gray);
+            border-radius: 32px;
+            transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1);
+            overflow: hidden;
+        }
+        .bento-card:hover {
+            transform: scale(1.01);
+        }
         
-        /* Carousel Styles */
-        .carousel-container { cursor: grab; overflow: hidden; white-space: nowrap; }
-        .carousel-container:active { cursor: grabbing; }
-        .carousel-track { display: flex; gap: 2rem; width: max-content; }
-        .testimonial-card { width: 320px; transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1); }
-        @media (min-width: 768px) { .testimonial-card { width: 450px; } }
+        /* Industry Selector Active State */
+        .industry-chip {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+        .industry-chip.active {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-color: rgba(0,0,0,0.05);
+            color: var(--apple-blue);
+        }
+
+        /* Comparison Styling */
+        .comparison-row {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .comparison-gradient {
+            background: linear-gradient(180deg, #fff 0%, #f5f5f7 100%);
+        }
+
+        /* Apple-style Carousel */
+        .carousel-wrapper { cursor: grab; }
+        .carousel-wrapper:active { cursor: grabbing; }
+        .testimonial-card {
+            flex-shrink: 0;
+            width: 85vw;
+            max-width: 980px;
+            border-radius: 32px;
+            background: var(--apple-gray);
+            transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+        }
+        .video-play-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
         
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .float { animation: subtle-float 6s ease-in-out infinite; }
     </style>
 </head>
-<body class="bg-white text-slate-900 selection:bg-blue-100 selection:text-blue-900">
-    <nav class="fixed top-0 w-full z-50 border-b border-gray-100 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-10">
-                <div class="flex items-center gap-2">
-                    <div class="w-6 h-6 bg-blue-600 rounded-md flex items-center justify-center">
-                        <i data-lucide="layers" class="text-white w-3.5 h-3.5"></i>
-                    </div>
-                    <span class="text-lg font-bold tracking-tighter text-blue-600">okovalo</span>
-                </div>
-                <div class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-slate-500">
-                    <a href="#" class="hover:text-blue-600 transition-colors">Solutions</a>
-                    <a href="#" class="hover:text-blue-600 transition-colors">Platform</a>
-                    <a href="#" class="hover:text-blue-600 transition-colors">Resource</a>
-                    <a href="#" class="hover:text-blue-600 transition-colors">Pricing</a>
+<body class="selection:bg-blue-500 selection:text-white">
+
+    <!-- Global Nav -->
+    <nav class="fixed top-0 w-full z-[100] h-12 glass-nav border-b border-black/[0.05]">
+        <div class="max-w-[1024px] mx-auto h-full px-6 flex items-center justify-between text-[12px] font-normal tracking-tight text-black/80">
+            <div class="flex items-center gap-8">
+                <a href="#" class="hover:text-black transition-colors"><i data-lucide="layers" class="w-4 h-4 text-blue-600"></i></a>
+                <div class="hidden md:flex gap-6">
+                    <a href="#" class="hover:text-black transition-colors">Store</a>
+                    <a href="#" class="hover:text-black transition-colors">Solutions</a>
+                    <a href="#" class="hover:text-black transition-colors">Global</a>
+                    <a href="#" class="hover:text-black transition-colors">Support</a>
                 </div>
             </div>
-            <div class="flex items-center gap-4">
-                <button class="text-[13px] font-medium text-slate-600 hover:text-blue-600">Log in</button>
-                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[13px] font-semibold hover:bg-blue-700 transition-all shadow-sm shadow-blue-200">
-                    Sign up
-                </button>
+            <div class="flex gap-6">
+                <i data-lucide="search" class="w-4 h-4 cursor-pointer"></i>
+                <i data-lucide="shopping-bag" class="w-4 h-4 cursor-pointer"></i>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 overflow-hidden hero-gradient">
-        <div class="max-w-4xl mx-auto px-6 text-center mb-16">
-            <div id="hero-content">
-                <h1 class="text-5xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6">
-                    World’s <span class="text-blue-600 font-extrabold">#1</span> User Friendly Business Suite
-                </h1>
-                <div class="flex flex-wrap justify-center gap-3 mb-10">
-                    <span class="px-3 py-1 bg-slate-50 border border-slate-100 rounded-full text-[11px] font-bold text-slate-500 uppercase tracking-widest">No Training</span>
-                    <span class="px-3 py-1 bg-slate-50 border border-slate-100 rounded-full text-[11px] font-bold text-slate-500 uppercase tracking-widest">Fully Built</span>
-                    <span class="px-3 py-1 bg-slate-50 border border-slate-100 rounded-full text-[11px] font-bold text-slate-500 uppercase tracking-widest">Pro Design</span>
-                    <span class="px-3 py-1 bg-slate-50 border border-slate-100 rounded-full text-[11px] font-bold text-slate-500 uppercase tracking-widest">All In One</span>
-                </div>
-                <div class="flex justify-center gap-4">
-                    <button class="bg-blue-600 text-white px-8 py-3.5 rounded-full font-bold shadow-lg shadow-blue-100 hover:scale-105 transition-transform">
-                        Book a Demo
-                    </button>
-                    <button class="bg-white border border-slate-200 text-slate-700 px-8 py-3.5 rounded-full font-bold flex items-center gap-2 hover:bg-slate-50">
-                        What's New <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    </button>
-                </div>
+    <section class="pt-32 pb-12 overflow-hidden bg-white">
+        <div class="max-w-[1200px] mx-auto px-6 text-center">
+            <h1 class="text-[56px] md:text-[80px] font-bold tracking-tight leading-[1.05] mb-6">
+                Business Suite.<br>
+                <span class="text-black/40">Powerful. Beautiful. Simple.</span>
+            </h1>
+            <p class="text-[21px] md:text-[24px] text-gray-500 max-w-2xl mx-auto mb-10 font-normal leading-relaxed">
+                Experience the world's most intuitive platform designed for elite operations.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-20">
+                <button class="apple-button bg-[#0071e3] text-white px-8 py-3 rounded-full font-medium text-[17px]">
+                    Book a demo
+                </button>
+                <a href="#" class="text-[#0066cc] hover:underline text-[19px] flex items-center gap-1">
+                    Watch the film <i data-lucide="play-circle" class="w-5 h-5"></i>
+                </a>
             </div>
         </div>
 
-        <div class="max-w-6xl mx-auto px-6" id="hero-visual">
-            <div class="relative bg-slate-900 rounded-[32px] p-2 shadow-2xl overflow-hidden border-4 border-slate-100">
-                <div class="aspect-video bg-white rounded-[26px] overflow-hidden relative">
-                    <div class="absolute inset-0 bg-slate-50 p-6">
-                        <div class="flex gap-4 h-full">
-                            <div class="w-48 bg-white rounded-xl shadow-sm border border-slate-100"></div>
-                            <div class="flex-1 space-y-4">
-                                <div class="h-32 bg-white rounded-xl shadow-sm border border-slate-100 p-4">
-                                    <div class="w-1/3 h-4 bg-slate-100 rounded mb-4"></div>
-                                    <div class="flex gap-4">
-                                        <div class="flex-1 h-12 bg-blue-50 rounded-lg"></div>
-                                        <div class="flex-1 h-12 bg-emerald-50 rounded-lg"></div>
-                                    </div>
-                                </div>
-                                <div class="h-64 bg-white rounded-xl shadow-sm border border-slate-100 relative overflow-hidden">
-                                    <svg class="absolute bottom-0 w-full h-32" viewBox="0 0 400 100">
-                                        <path d="M0,80 Q100,20 200,60 T400,10" fill="none" stroke="#2563eb" stroke-width="3" />
-                                    </svg>
-                                </div>
+        <div class="max-w-[1440px] mx-auto px-4 md:px-20">
+            <div class="relative w-full aspect-[21/9] rounded-[40px] overflow-hidden bg-black shadow-[0_40px_100px_rgba(0,0,0,0.1)]">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=100&w=2000" class="w-full h-full object-cover opacity-90" alt="Interface">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-3/4 h-3/4 bg-white/10 backdrop-blur-3xl rounded-3xl border border-white/20 shadow-2xl float p-8">
+                        <div class="flex gap-4 mb-8">
+                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="h-10 w-1/3 bg-white/20 rounded-lg"></div>
+                            <div class="grid grid-cols-3 gap-6">
+                                <div class="h-32 bg-white/10 rounded-xl"></div>
+                                <div class="h-32 bg-white/10 rounded-xl"></div>
+                                <div class="h-32 bg-white/10 rounded-xl"></div>
                             </div>
                         </div>
                     </div>
@@ -110,53 +154,112 @@
         </div>
     </section>
 
-    <!-- Comparison -->
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <p class="text-blue-600 font-bold text-sm tracking-widest uppercase mb-2">The Difference</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Okovalo <span class="text-blue-600 font-light">make it simple</span></h2>
+    <!-- Comparison Section: Apple Style "Why Okovalo" -->
+    <section class="py-32 bg-white">
+        <div class="max-w-[1024px] mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-[40px] md:text-[56px] font-bold tracking-tight mb-4">Why Okovalo.</h2>
+                <p class="text-gray-500 text-[21px]">Everything you need, none of the noise.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white rounded-3xl p-8 comparison-shadow border border-blue-100 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4">
-                        <i data-lucide="check-circle-2" class="text-blue-600 opacity-20 w-16 h-16"></i>
-                    </div>
-                    <h3 class="text-xs uppercase font-bold text-slate-400 mb-8">okovalo</h3>
-                    <div class="space-y-6">
-                        <div class="flex justify-between items-baseline border-b border-slate-50 pb-4">
-                            <span class="text-slate-500 text-sm">Interface</span>
-                            <span class="text-slate-900 font-bold">Minimalist & Intuitive</span>
-                        </div>
-                        <div class="flex justify-between items-baseline border-b border-slate-50 pb-4">
-                            <span class="text-slate-500 text-sm">Setup Time</span>
-                            <span class="text-slate-900 font-bold">Days</span>
-                        </div>
-                        <ul class="space-y-4 pt-4">
-                            <li class="flex items-center gap-3 text-sm text-slate-700">
-                                <div class="w-5 h-5 bg-blue-50 rounded-full flex items-center justify-center"><i data-lucide="check" class="text-blue-600 w-3 h-3"></i></div>
-                                Transparent Flat Pricing
-                            </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-700">
-                                <div class="w-5 h-5 bg-blue-50 rounded-full flex items-center justify-center"><i data-lucide="check" class="text-blue-600 w-3 h-3"></i></div>
-                                Works out of the box
-                            </li>
-                        </ul>
-                        <button class="w-full mt-6 py-3 border border-slate-200 rounded-xl font-bold text-slate-900 hover:bg-slate-50 transition-all">More about us</button>
-                    </div>
+            <div class="grid grid-cols-3 gap-4 mb-12">
+                <div class="text-left text-sm font-bold text-gray-400 uppercase tracking-widest pt-8">Feature</div>
+                <div class="bg-gray-50 rounded-t-[32px] p-8 text-center border-x border-t border-black/5">
+                    <p class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">The Old Way</p>
+                </div>
+                <div class="comparison-gradient rounded-t-[32px] p-8 text-center border-x border-t border-blue-500/10">
+                    <p class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-4">Okovalo</p>
                 </div>
 
-                <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 grayscale opacity-60">
-                    <h3 class="text-xs uppercase font-bold text-slate-400 mb-8">Others</h3>
-                    <div class="space-y-6">
-                        <div class="flex justify-between items-baseline border-b border-slate-200 pb-4">
-                            <span class="text-slate-500 text-sm">Interface</span>
-                            <span class="text-slate-900 font-bold">Common & Complex</span>
+                <!-- Row 1 -->
+                <div class="py-8 border-b border-black/5 flex items-center">
+                    <p class="text-[17px] font-semibold">User Experience</p>
+                </div>
+                <div class="py-8 bg-gray-50 border-x border-b border-black/5 flex flex-col items-center justify-center text-center px-4">
+                    <p class="text-gray-500 text-sm">Complex menus, steep learning curves.</p>
+                </div>
+                <div class="py-8 comparison-gradient border-x border-b border-blue-500/10 flex flex-col items-center justify-center text-center px-4">
+                    <p class="text-black text-sm font-medium">Intuitive. Feels like an extension of your thought process.</p>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="py-8 border-b border-black/5 flex items-center">
+                    <p class="text-[17px] font-semibold">Implementation</p>
+                </div>
+                <div class="py-8 bg-gray-50 border-x border-b border-black/5 flex flex-col items-center justify-center text-center px-4">
+                    <p class="text-gray-500 text-sm">3-6 months of setup and consultant fees.</p>
+                </div>
+                <div class="py-8 comparison-gradient border-x border-b border-blue-500/10 flex flex-col items-center justify-center text-center px-4">
+                    <p class="text-black text-sm font-medium">48-hour rapid bridge. Zero downtime integration.</p>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="py-8 border-b border-black/5 flex items-center">
+                    <p class="text-[17px] font-semibold">Intelligence</p>
+                </div>
+                <div class="py-8 bg-gray-50 border-x border-b border-black/5 flex flex-col items-center justify-center text-center px-4">
+                    <p class="text-gray-500 text-sm">Reactive reporting after events happen.</p>
+                </div>
+                <div class="py-8 comparison-gradient border-x border-b border-blue-500/10 flex flex-col items-center justify-center text-center px-4">
+                    <p class="text-black text-sm font-medium">Proactive AI. Fixes problems before they reach your inbox.</p>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="py-8 flex items-center">
+                    <p class="text-[17px] font-semibold">Ecosystem</p>
+                </div>
+                <div class="py-8 bg-gray-50 border-x border-black/5 rounded-b-[32px] flex flex-col items-center justify-center text-center px-4">
+                    <p class="text-gray-500 text-sm">Fragmented tools that don't talk to each other.</p>
+                </div>
+                <div class="py-8 comparison-gradient border-x border-blue-500/10 rounded-b-[32px] shadow-[0_20px_40px_rgba(0,0,0,0.03)] flex flex-col items-center justify-center text-center px-4">
+                    <p class="text-black text-sm font-medium">One unified suite. Everything, everywhere, all at once.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Section: Bento Selector -->
+    <section class="py-32 bg-white overflow-hidden">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-[40px] md:text-[56px] font-bold tracking-tight mb-4">Tailored for your world.</h2>
+                <p class="text-gray-500 text-[21px] max-w-xl">Deep integration for industries that demand the highest level of precision.</p>
+            </div>
+
+            <div class="flex flex-wrap gap-3 mb-12">
+                <button onclick="updateIndustry('ecommerce')" class="industry-chip active px-6 py-3 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Ecommerce</button>
+                <button onclick="updateIndustry('logistics')" class="industry-chip px-6 py-3 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Logistics</button>
+                <button onclick="updateIndustry('realestate')" class="industry-chip px-6 py-3 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Real Estate</button>
+                <button onclick="updateIndustry('fintech')" class="industry-chip px-6 py-3 rounded-full text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Fintech</button>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 bento-card bg-gray-50 p-12 items-center">
+                <div id="industry-content" class="space-y-8">
+                    <div class="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-sm text-blue-600">
+                        <i id="industry-icon" data-lucide="shopping-cart" class="w-8 h-8"></i>
+                    </div>
+                    <h3 id="industry-title" class="text-3xl font-bold">Scale at the speed of thought.</h3>
+                    <p id="industry-desc" class="text-gray-500 text-lg leading-relaxed">Handling millions of SKUs and real-time inventory across global warehouses with sub-millisecond latency.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-sm font-medium text-gray-700">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600"></i> Auto-reconciliation
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-medium text-gray-700">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600"></i> Global tax compliance
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative group h-full flex items-center justify-center">
+                    <div class="w-full aspect-square bg-white rounded-[32px] shadow-2xl border border-black/5 p-8 flex flex-col justify-between overflow-hidden">
+                        <div class="flex justify-between items-center">
+                            <div class="h-4 w-24 bg-gray-100 rounded"></div>
+                            <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center"><i data-lucide="activity" class="w-4 h-4 text-blue-600"></i></div>
                         </div>
-                        <div class="flex justify-between items-baseline border-b border-slate-200 pb-4">
-                            <span class="text-slate-500 text-sm">Setup Time</span>
-                            <span class="text-slate-900 font-bold">Months</span>
+                        <div class="flex gap-2 items-end">
+                            <div class="flex-1 bg-blue-100 h-12 rounded-t-lg transition-all duration-700 group-hover:h-32"></div>
+                            <div class="flex-1 bg-blue-500 h-24 rounded-t-lg transition-all duration-700 group-hover:h-48"></div>
+                            <div class="flex-1 bg-blue-200 h-16 rounded-t-lg transition-all duration-700 group-hover:h-36"></div>
+                            <div class="flex-1 bg-blue-600 h-28 rounded-t-lg transition-all duration-700 group-hover:h-44"></div>
                         </div>
                     </div>
                 </div>
@@ -164,414 +267,220 @@
         </div>
     </section>
 
-    <!-- Industry Tabs -->
-    <section class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <p class="text-blue-600 font-bold text-sm tracking-widest uppercase mb-2">Flexible for industries</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900"><span class="text-blue-600">Any industry</span>, anywhere in the world</h2>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-2 mb-12" id="industry-tabs">
-                <button onclick="switchTab('Ecommerce')" class="tab-btn px-6 py-2.5 rounded-full text-[13px] font-bold transition-all bg-white text-slate-500 border border-slate-100">Ecommerce</button>
-                <button onclick="switchTab('Logistics')" class="tab-btn px-6 py-2.5 rounded-full text-[13px] font-bold transition-all bg-white text-slate-500 border border-slate-100">Logistics</button>
-                <button onclick="switchTab('Real Estate')" class="tab-btn active-tab px-6 py-2.5 rounded-full text-[13px] font-bold transition-all border border-slate-100">Real Estate</button>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 items-center bg-white p-12 rounded-[40px] shadow-sm border border-slate-100">
-                <div id="tab-content" class="space-y-6">
-                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
-                        <i data-lucide="globe"></i>
+    <!-- Designed by Experts: Spotlight -->
+    <section class="py-32 bg-black text-white overflow-hidden">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative">
+                    <div class="w-full aspect-[4/5] rounded-[40px] overflow-hidden bg-gray-900 border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale brightness-75" alt="Expert">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                     </div>
-                    <h3 class="text-3xl font-bold text-slate-900" id="tab-title">Real Estate Optimized</h3>
-                    <p class="text-lg text-slate-500 leading-relaxed" id="tab-desc">
-                        We've tailored the Okovalo experience specifically for the complexities of Real Estate.
+                    <div class="absolute bottom-8 left-8 right-8 p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl">
+                        <p class="text-sm font-bold uppercase tracking-widest text-blue-400 mb-1">Chief Architect</p>
+                        <h4 class="text-xl font-bold">Dr. Elena Vos</h4>
+                        <p class="text-white/60 text-xs">Former VP Operations at Fortune 10</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-[40px] md:text-[56px] font-bold tracking-tight mb-8">Designed by the <span class="text-blue-500">best in business.</span></h2>
+                    <p class="text-white/60 text-[21px] leading-relaxed mb-12">
+                        We didn't build Okovalo in a lab. We built it with the people who ran the world's most complex supply chains and financial systems.
                     </p>
-                </div>
-                <div class="relative bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100">
-                    <div class="w-48 h-64 bg-white rounded-2xl shadow-xl p-4">
-                        <div class="w-full h-4 bg-slate-50 rounded mb-2"></div>
-                        <div class="w-2/3 h-4 bg-slate-50 rounded mb-4"></div>
-                        <div class="w-full h-32 bg-blue-50 rounded-xl opacity-20"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Scrollytelling Section -->
-    <section class="py-32 bg-white overflow-hidden relative border-b border-slate-50">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
-            <div id="scrolly-text">
-                <div class="step mb-32 opacity-20 transition-opacity duration-500" data-step="1">
-                    <span class="text-blue-600 font-bold text-lg mb-2 block">01</span>
-                    <h3 class="text-3xl font-bold text-slate-900 mb-4">User-Friendly Interface</h3>
-                    <p class="text-lg text-slate-500 leading-relaxed">No clutter. No confusion. Just a system your team understands instantly.</p>
-                </div>
-                <div class="step mb-32 opacity-20 transition-opacity duration-500" data-step="2">
-                    <span class="text-blue-600 font-bold text-lg mb-2 block">02</span>
-                    <h3 class="text-3xl font-bold text-slate-900 mb-4">Built For You</h3>
-                    <p class="text-lg text-slate-500 leading-relaxed">Okovalo is tailored to your business and grows with you as you expand.</p>
-                </div>
-                <div class="step mb-32 opacity-20 transition-opacity duration-500" data-step="3">
-                    <span class="text-blue-600 font-bold text-lg mb-2 block">03</span>
-                    <h3 class="text-3xl font-bold text-slate-900 mb-4">Pay When Satisfied</h3>
-                    <p class="text-lg text-slate-500 leading-relaxed">Simple. You pay only when you're satisfied with the results.</p>
-                </div>
-            </div>
-
-            <div class="relative hidden lg:block">
-                <div class="sticky top-40 w-full aspect-square bg-slate-50 rounded-[40px] shadow-inner border border-slate-100 flex items-center justify-center p-12">
-                    <svg viewBox="0 0 400 600" class="w-full h-full drop-shadow-xl">
-                        <path d="M 50 100 Q 350 200 50 300 T 350 500" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
-                        <path id="scrolly-path" d="M 50 100 Q 350 200 50 300 T 350 500" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" class="scrolly-line" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Appointment Scheduling Section -->
-    <section class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <p class="text-blue-600 font-bold text-sm tracking-widest uppercase mb-4">Support & Growth</p>
-                <h2 class="text-4xl font-bold text-slate-900 mb-8 leading-tight">
-                    Talk to our <span class="text-blue-600">business experts</span>
-                </h2>
-                <div class="space-y-6 mb-10">
-                    <div class="flex gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center shrink-0">
-                            <i data-lucide="calendar" class="text-blue-600"></i>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <span class="text-3xl font-bold block mb-2">250+</span>
+                            <span class="text-white/40 text-sm uppercase tracking-widest">Industry Experts</span>
                         </div>
                         <div>
-                            <h4 class="font-bold text-slate-900">Customized demo</h4>
-                            <p class="text-sm text-slate-500">30 min • See how Okovalo fits your specific workflow</p>
+                            <span class="text-3xl font-bold block mb-2">15yr</span>
+                            <span class="text-white/40 text-sm uppercase tracking-widest">Average Experience</span>
                         </div>
                     </div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <div class="flex -space-x-3">
-                        <img src="https://i.pravatar.cc/100?img=11" class="w-10 h-10 rounded-full border-2 border-white" alt="Expert">
-                        <img src="https://i.pravatar.cc/100?img=12" class="w-10 h-10 rounded-full border-2 border-white" alt="Expert">
-                        <img src="https://i.pravatar.cc/100?img=13" class="w-10 h-10 rounded-full border-2 border-white" alt="Expert">
-                        <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-600">+12</div>
-                    </div>
-                    <p class="text-sm text-slate-500 font-medium">Join 5,000+ businesses growing with us</p>
-                </div>
-            </div>
-
-            <!-- Calendar UI -->
-            <div class="bg-white p-8 rounded-[40px] shadow-2xl border border-slate-100">
-                <div class="flex justify-between items-center mb-8">
-                    <h4 class="font-bold text-slate-900 text-lg">Select Date & Time</h4>
-                    <div class="flex gap-2">
-                        <button class="p-2 hover:bg-slate-50 rounded-lg transition-colors"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                        <button class="p-2 hover:bg-slate-50 rounded-lg transition-colors"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
-                    </div>
-                </div>
-                
-                <div class="calendar-grid mb-8 text-center">
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">S</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">M</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">T</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">W</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">T</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">F</span>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase">S</span>
-                    <div id="calendar-dates" class="contents"></div>
-                </div>
-
-                <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-blue-600 transition-all shadow-lg shadow-slate-200">
-                    Confirm Appointment
-                </button>
             </div>
         </div>
     </section>
 
-    <!-- Video Testimonials Carousel Section -->
-    <section class="py-32 bg-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div class="max-w-2xl">
-                <p class="text-blue-600 font-bold text-sm tracking-widest uppercase mb-4">Voices of Success</p>
-                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Proven by the world's <span class="text-blue-600">fastest growing</span> companies</h2>
-            </div>
-            <div class="flex gap-4">
-                <button id="carousel-prev" class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-600 hover:bg-blue-50 transition-all">
-                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
-                </button>
-                <button id="carousel-next" class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-600 hover:bg-blue-50 transition-all">
-                    <i data-lucide="arrow-right" class="w-6 h-6"></i>
-                </button>
-            </div>
+    <!-- 3 Step Roadmap: Minimalist Journey -->
+    <section class="py-32 bg-[#f5f5f7]">
+        <div class="max-w-[1000px] mx-auto px-6 text-center mb-24">
+            <h2 class="text-[40px] md:text-[56px] font-bold tracking-tight">Your roadmap to excellence.</h2>
         </div>
 
-        <div class="carousel-container pl-6 md:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]">
-            <div id="carousel-track" class="carousel-track">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card relative group cursor-pointer overflow-hidden rounded-[40px] aspect-[4/5] md:aspect-video bg-slate-900">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" alt="Sarah Jenkins">
-                    <div class="absolute inset-0 video-overlay p-8 flex flex-col justify-end">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-16 h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                <i data-lucide="play" class="text-white fill-current w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-white mb-0.5">Atlas Corp</h3>
-                                <p class="text-blue-400 text-sm font-medium">Sarah Jenkins, COO</p>
-                            </div>
-                        </div>
-                        <p class="text-slate-200 text-base leading-relaxed whitespace-normal line-clamp-3">"Switching to Okovalo wasn't just a software upgrade; it was a culture shift for our entire logistics team."</p>
+        <div class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-3 gap-12 relative">
+            <div class="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-gray-200 z-0"></div>
+            <div class="relative z-10 space-y-6 group">
+                <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-sm border border-gray-100 transition-transform group-hover:scale-110 group-hover:shadow-xl duration-500">
+                    <span class="text-2xl font-bold text-blue-600">01</span>
+                </div>
+                <h3 class="text-xl font-bold">The Consultation</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">A deep dive into your existing friction points with our solutions architects.</p>
+            </div>
+            <div class="relative z-10 space-y-6 group">
+                <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-sm border border-gray-100 transition-transform group-hover:scale-110 group-hover:shadow-xl duration-500">
+                    <span class="text-2xl font-bold text-blue-600">02</span>
+                </div>
+                <h3 class="text-xl font-bold">Rapid Integration</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Our "Liquid Bridge" technology connects your data in 48 hours without downtime.</p>
+            </div>
+            <div class="relative z-10 space-y-6 group">
+                <div class="w-24 h-24 rounded-full bg-[#0071e3] flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 duration-500">
+                    <i data-lucide="rocket" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold">Unrivaled Scale</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Go live with full automation. Pay only when your team hits their new efficiency KPIs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid Features (Original) -->
+    <section class="py-32 bg-white">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-6">
+                <div class="md:col-span-8 bento-card p-12 flex flex-col justify-between min-h-[500px]">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-4">Zero training required.</h3>
+                        <p class="text-gray-500 text-lg max-w-sm">Intuitive by nature. So your team can focus on what matters, not how the software works.</p>
+                    </div>
+                    <div class="relative h-64 mt-8">
+                         <div class="absolute right-0 bottom-0 w-full h-full bg-blue-500/10 rounded-2xl border border-blue-500/20 translate-y-10 translate-x-10 p-6">
+                            <div class="w-1/2 h-4 bg-blue-500/30 rounded mb-4"></div>
+                            <div class="w-full h-32 bg-blue-500/20 rounded-xl"></div>
+                         </div>
                     </div>
                 </div>
-
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card relative group cursor-pointer overflow-hidden rounded-[40px] aspect-[4/5] md:aspect-video bg-slate-900">
-                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" alt="Mark Thompson">
-                    <div class="absolute inset-0 video-overlay p-8 flex flex-col justify-end">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-16 h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                <i data-lucide="play" class="text-white fill-current w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-white mb-0.5">Swiftly E-comm</h3>
-                                <p class="text-blue-400 text-sm font-medium">Mark Thompson, Founder</p>
-                            </div>
-                        </div>
-                        <p class="text-slate-200 text-base leading-relaxed whitespace-normal line-clamp-3">"We scaled from 1k to 50k orders a month without hiring extra support staff thanks to Okovalo's automation."</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card relative group cursor-pointer overflow-hidden rounded-[40px] aspect-[4/5] md:aspect-video bg-slate-900">
-                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" alt="Elena Rodriguez">
-                    <div class="absolute inset-0 video-overlay p-8 flex flex-col justify-end">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-16 h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                <i data-lucide="play" class="text-white fill-current w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-white mb-0.5">Vanguard Realty</h3>
-                                <p class="text-blue-400 text-sm font-medium">Elena Rodriguez, CEO</p>
-                            </div>
-                        </div>
-                        <p class="text-slate-200 text-base leading-relaxed whitespace-normal line-clamp-3">"The user interface is so clean our agents actually enjoy using the CRM. It's a game changer for retention."</p>
-                    </div>
-                </div>
-
-                <!-- Testimonial 4 -->
-                <div class="testimonial-card relative group cursor-pointer overflow-hidden rounded-[40px] aspect-[4/5] md:aspect-video bg-slate-900">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" alt="David Chen">
-                    <div class="absolute inset-0 video-overlay p-8 flex flex-col justify-end">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-16 h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                <i data-lucide="play" class="text-white fill-current w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-white mb-0.5">BlueWave Logistics</h3>
-                                <p class="text-blue-400 text-sm font-medium">David Chen, CTO</p>
-                            </div>
-                        </div>
-                        <p class="text-slate-200 text-base leading-relaxed whitespace-normal line-clamp-3">"Integrating Okovalo took 48 hours. Our previous suite took 6 months and never really worked. Pure magic."</p>
-                    </div>
+                <div class="md:col-span-4 bento-card p-12 flex flex-col items-center text-center">
+                    <i data-lucide="shield-check" class="w-16 h-16 text-blue-600 mb-8"></i>
+                    <h3 class="text-2xl font-bold mb-4">Secure by Design</h3>
+                    <p class="text-gray-500">Your data is yours. End-to-end encryption for every business asset.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Progress Bar -->
-        <div class="max-w-7xl mx-auto px-6 mt-12">
-            <div class="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
-                <div id="carousel-progress" class="h-full bg-blue-600 w-0 transition-all duration-300"></div>
-            </div>
+    <!-- Voices of Success -->
+    <section class="py-32 bg-[#f5f5f7] overflow-hidden">
+        <div class="max-w-[1200px] mx-auto px-6 mb-16">
+            <h2 class="text-[40px] md:text-[56px] font-bold tracking-tight">Voices of Success.</h2>
         </div>
-
-        <div class="max-w-7xl mx-auto px-6 mt-16 flex flex-wrap justify-center items-center gap-12 opacity-30 grayscale filter">
-            <span class="text-2xl font-black italic">SAMSUNG</span>
-            <span class="text-2xl font-black italic">ORACLE</span>
-            <span class="text-2xl font-black italic">SHOPIFY</span>
-            <span class="text-2xl font-black italic">ADOBE</span>
+        <div class="carousel-wrapper overflow-visible">
+            <div id="apple-carousel" class="flex gap-8 px-6 md:px-[calc((100vw-1200px)/2+1.5rem)]">
+                <div class="testimonial-card relative group p-12 md:p-20 flex flex-col justify-end min-h-[500px] md:min-h-[600px] shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1600" class="absolute inset-0 w-full h-full object-cover rounded-[32px] transition-transform duration-1000 group-hover:scale-105" alt="Success">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-[32px]"></div>
+                    <div class="relative z-10 text-white">
+                        <div class="video-play-btn w-20 h-20 rounded-full flex items-center justify-center mb-8 cursor-pointer hover:scale-110 transition-transform">
+                            <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                        </div>
+                        <p class="text-2xl md:text-3xl font-medium mb-6 max-w-2xl">"Okovalo redefined how our global teams collaborate."</p>
+                        <p class="font-bold text-lg">Jordan Smith</p>
+                        <p class="text-white/60">Director of Operations, Vertex Group</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Final CTA -->
-    <section class="py-24 bg-white border-t border-slate-100">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold text-slate-900 mb-6">Ready to scale your operations?</h2>
-            <p class="text-lg text-slate-500 mb-10">Get started with Okovalo today and join the world's most efficient businesses.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-blue-100 hover:scale-105 transition-transform">
-                    Start Free Trial
-                </button>
-                <button class="bg-white border border-slate-200 text-slate-700 px-10 py-4 rounded-full font-bold hover:bg-slate-50 transition-all">
-                    Contact Sales
-                </button>
-            </div>
+    <section class="py-32 bg-[#f5f5f7]">
+        <div class="max-w-[800px] mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold mb-8">Elevate your business.</h2>
+            <button class="apple-button bg-[#0071e3] text-white px-10 py-4 rounded-full font-medium text-[19px]">
+                Try Okovalo for free
+            </button>
+            <p class="mt-8 text-gray-500">No credit card required. Cancel anytime.</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-white pt-24 pb-12">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-4 gap-12 mb-20">
-                <div class="lg:col-span-1">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
-                            <i data-lucide="layers" class="text-white w-3.5 h-3.5"></i>
-                        </div>
-                        <span class="text-xl font-bold tracking-tighter">okovalo</span>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-8">The modern business suite designed for elite operations.</p>
-                </div>
+    <footer class="bg-[#f5f5f7] text-black/60 pt-12 pb-20 border-t border-black/5">
+        <div class="max-w-[1024px] mx-auto px-6 text-[12px]">
+            <p class="mb-8 pb-8 border-b border-black/10">1. Performance claims based on internal testing. 2. Support for 140+ regions requires Global Enterprise tier.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
-                    <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-slate-500">Product</h5>
-                    <ul class="space-y-4 text-sm text-slate-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                    <h4 class="text-black font-bold mb-4">Product</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:underline">Okovalo One</a></li>
+                        <li><a href="#" class="hover:underline">Global Suite</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-slate-500">Company</h5>
-                    <ul class="space-y-4 text-sm text-slate-400">
-                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    <h4 class="text-black font-bold mb-4">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:underline">About Us</a></li>
+                        <li><a href="#" class="hover:underline">Careers</a></li>
                     </ul>
-                </div>
-                <div>
-                    <h5 class="font-bold mb-6 text-sm uppercase tracking-widest text-slate-500">Newsletter</h5>
-                    <div class="flex bg-white/5 p-1 rounded-xl border border-white/10">
-                        <input type="text" placeholder="Email" class="bg-transparent px-4 py-2 outline-none w-full text-sm">
-                        <button class="bg-blue-600 p-2 rounded-lg"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
-                    </div>
                 </div>
             </div>
-            <p class="text-slate-600 text-xs pt-12 border-t border-white/5">© 2024 Okovalo. All rights reserved.</p>
+            <div class="mt-12 pt-8 border-t border-black/10 flex flex-col md:flex-row justify-between gap-4">
+                <p>Copyright © 2024 Okovalo Inc. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms of Use</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Icons
         lucide.createIcons();
-
-        // GSAP Setup
         gsap.registerPlugin(ScrollTrigger, Draggable);
 
-        // Generate Calendar Dates
-        const calendarContainer = document.getElementById('calendar-dates');
-        for (let i = 1; i <= 31; i++) {
-            const btn = document.createElement('button');
-            btn.className = `aspect-square flex items-center justify-center rounded-xl text-sm font-medium transition-all ${i === 24 ? 'bg-blue-600 text-white shadow-lg shadow-blue-100' : 'hover:bg-slate-50 text-slate-600'}`;
-            btn.innerText = i;
-            calendarContainer.appendChild(btn);
-        }
-
-        // Hero Entrance
-        gsap.from("#hero-content", { y: 40, opacity: 0, duration: 1, ease: "power3.out" });
-        gsap.from("#hero-visual", { y: 100, opacity: 0, duration: 1.2, delay: 0.3, ease: "power3.out" });
-
-        // Scrollytelling Path Logic
-        const path = document.querySelector('#scrolly-path');
-        const pathLength = path.getTotalLength();
-        path.style.strokeDasharray = pathLength;
-        path.style.strokeDashoffset = pathLength;
-
-        gsap.to(path, {
-            strokeDashoffset: 0,
-            scrollTrigger: {
-                trigger: "#scrolly-text",
-                start: "top 40%",
-                end: "bottom 60%",
-                scrub: 1
-            }
-        });
-
-        // Step Highlight
-        document.querySelectorAll('.step').forEach(step => {
-            ScrollTrigger.create({
-                trigger: step,
-                start: "top 50%",
-                onEnter: () => step.classList.replace('opacity-20', 'opacity-100'),
-                onLeaveBack: () => step.classList.replace('opacity-100', 'opacity-20')
-            });
-        });
-
-        // Tab Switching
-        function switchTab(industry) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active-tab');
-                btn.classList.add('bg-white', 'text-slate-500');
-                if (btn.innerText === industry) {
-                    btn.classList.add('active-tab');
-                    btn.classList.remove('bg-white', 'text-slate-500');
-                }
-            });
-
-            gsap.to("#tab-content", {
-                opacity: 0, y: 10, duration: 0.2,
-                onComplete: () => {
-                    document.getElementById('tab-title').innerText = `${industry} Optimized`;
-                    document.getElementById('tab-desc').innerText = `Tailored for ${industry} operations.`;
-                    gsap.to("#tab-content", { opacity: 1, y: 0, duration: 0.4 });
-                }
-            });
-        }
-
-        // Carousel Implementation
-        const track = document.getElementById('carousel-track');
-        const cards = document.querySelectorAll('.testimonial-card');
-        const progress = document.getElementById('carousel-progress');
-        
-        let draggable = Draggable.create(track, {
-            type: "x",
-            edgeResistance: 0.65,
-            bounds: {
-                minX: -(track.offsetWidth - window.innerWidth + 100),
-                maxX: 0
+        // Industry Selector Logic
+        const industries = {
+            ecommerce: {
+                title: "Scale at the speed of thought.",
+                desc: "Handling millions of SKUs and real-time inventory across global warehouses with sub-millisecond latency.",
+                icon: "shopping-cart"
             },
-            inertia: true,
-            onDrag: updateProgress,
-            onThrowUpdate: updateProgress
-        })[0];
+            logistics: {
+                title: "Precision in every kilometer.",
+                desc: "AI-driven route optimization that cuts fuel costs by 30% and delivery times by 15% using predictive traffic modeling.",
+                icon: "truck"
+            },
+            realestate: {
+                title: "The future of property tech.",
+                desc: "End-to-end management for massive portfolios, featuring automated smart-contract leasing and maintenance ticketing.",
+                icon: "home"
+            },
+            fintech: {
+                title: "Security without compromise.",
+                desc: "Banking-grade encryption combined with a frictionless user experience for high-volume transaction processing.",
+                icon: "landmark"
+            }
+        };
 
-        function updateProgress() {
-            const ratio = this.x / this.minX;
-            progress.style.width = `${Math.min(100, Math.max(0, ratio * 100))}%`;
+        function updateIndustry(id) {
+            document.querySelectorAll('.industry-chip').forEach(chip => {
+                chip.classList.remove('active');
+                if (chip.textContent.toLowerCase().includes(id)) chip.classList.add('active');
+            });
+            const data = industries[id];
+            gsap.to("#industry-content", {
+                opacity: 0, x: -20, duration: 0.3,
+                onComplete: () => {
+                    document.getElementById('industry-title').textContent = data.title;
+                    document.getElementById('industry-desc').textContent = data.desc;
+                    document.getElementById('industry-icon').setAttribute('data-lucide', data.icon);
+                    lucide.createIcons();
+                    gsap.to("#industry-content", { opacity: 1, x: 0, duration: 0.4 });
+                }
+            });
         }
 
-        // Carousel Navigation
-        const cardWidth = cards[0].offsetWidth + 32; // width + gap
-        
-        document.getElementById('carousel-next').addEventListener('click', () => {
-            let nextX = draggable.x - cardWidth;
-            gsap.to(track, {
-                x: Math.max(nextX, draggable.minX),
-                duration: 0.6,
-                ease: "power2.out",
-                onUpdate: () => draggable.update(),
-                onComplete: updateProgress.bind(draggable)
-            });
+        const track = document.getElementById('apple-carousel');
+        Draggable.create(track, {
+            type: "x",
+            edgeResistance: 0.9,
+            bounds: { minX: -(track.scrollWidth - window.innerWidth + 100), maxX: 0 },
+            inertia: true
         });
 
-        document.getElementById('carousel-prev').addEventListener('click', () => {
-            let prevX = draggable.x + cardWidth;
-            gsap.to(track, {
-                x: Math.min(prevX, 0),
-                duration: 0.6,
-                ease: "power2.out",
-                onUpdate: () => draggable.update(),
-                onComplete: updateProgress.bind(draggable)
-            });
-        });
-
-        // Initialize progress
-        updateProgress.call(draggable);
-
-        // Handle Resize
-        window.addEventListener('resize', () => {
-            draggable.applyBounds({
-                minX: -(track.offsetWidth - window.innerWidth + 100),
-                maxX: 0
-            });
-            updateProgress.call(draggable);
+        gsap.from("h1", { y: 40, opacity: 0, duration: 1.2, ease: "power4.out" });
+        gsap.from(".bento-card", {
+            y: 50, opacity: 0, duration: 0.8, stagger: 0.1,
+            scrollTrigger: { trigger: ".bento-card", start: "top 85%" }
         });
 
     </script>
