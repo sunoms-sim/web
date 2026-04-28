@@ -1,230 +1,413 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Okovalo ERP | Next-Gen Enterprise Intelligence</title>
+    <title>Okovalo | Excellence in Business</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
-
         :root {
-            --brand-primary: #2563eb;
-            --bg-main: #ffffff;
-            --text-main: #0f172a;
-            --grid-color: rgba(15, 23, 42, 0.05);
+            --apple-blue: #0071e3;
+            --apple-gray: #f5f5f7;
+            --apple-text: #1d1d1f;
         }
-
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            overflow-x: hidden;
-            margin: 0;
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #fff;
+            color: var(--apple-text);
+            -webkit-font-smoothing: antialiased;
         }
-
-        /* The "Wow" Grid Background - Adjusted for Light Mode */
-        .grid-overlay {
-            position: fixed;
-            inset: 0;
-            background-image: 
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: 0;
-            mask-image: radial-gradient(circle at center, black, transparent 90%);
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: saturate(180%) blur(20px); 
         }
-
-        .glow-sphere {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: 1;
-            pointer-events: none;
+        .apple-button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        /* Kinetic Typography Effect */
-        .hero-title {
-            font-size: clamp(3rem, 10vw, 8rem);
-            font-weight: 700;
-            line-height: 0.9;
-            letter-spacing: -0.04em;
-            perspective: 1000px;
+        .apple-button:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
         }
-
-        .hero-title span {
-            display: inline-block;
-            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), color 0.3s ease;
-        }
-
-        .hero-title:hover span {
-            transform: skewX(-5deg) rotateY(5deg);
-            color: var(--brand-primary);
-        }
-
-        /* Neo-Brutalist Badge Styles - Adjusted for Light Mode */
-        .glass-badge {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(15, 23, 42, 0.08);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .glass-badge:hover {
-            border-color: var(--brand-primary);
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.1);
-        }
-
-        /* Animation Keyframes */
-        @keyframes float-badge {
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            33% { transform: translateY(-15px) translateX(5px); }
-            66% { transform: translateY(10px) translateX(-5px); }
-        }
-
-        .float-animation {
-            animation: float-badge 6s ease-in-out infinite;
-        }
-
-        /* Scroller Styling */
-        .scroller {
-            height: 40px;
+        .bento-card {
+            background: var(--apple-gray);
+            border-radius: 32px;
+            transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1);
             overflow: hidden;
-            border-left: 2px solid var(--brand-primary);
-            padding-left: 1rem;
         }
-
-        .scroller-inner {
-            animation: scroll-text 8s infinite;
+        .bento-card:hover {
+            transform: scale(1.01);
         }
-
-        @keyframes scroll-text {
-            0%, 20% { transform: translateY(0); }
-            25%, 45% { transform: translateY(-40px); }
-            50%, 70% { transform: translateY(-80px); }
-            75%, 95% { transform: translateY(-120px); }
-            100% { transform: translateY(0); }
+        /* Apple-style Carousel */
+        .carousel-wrapper { cursor: grab; }
+        .carousel-wrapper:active { cursor: grabbing; }
+        .testimonial-card {
+            flex-shrink: 0;
+            width: 85vw;
+            max-width: 980px;
+            border-radius: 32px;
+            background: var(--apple-gray);
+            transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
         }
+        .video-play-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .float { animation: subtle-float 6s ease-in-out infinite; }
     </style>
 </head>
-<body>
+<body class="selection:bg-blue-500 selection:text-white">
 
-    <div class="grid-overlay"></div>
-    <div class="glow-sphere" style="top: -10%; left: -10%;"></div>
-    <div class="glow-sphere" style="bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(147, 51, 234, 0.04) 0%, transparent 70%);"></div>
-
-    <nav class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-6 backdrop-blur-md border-b border-slate-200/50">
-        <div class="text-xl font-bold tracking-tighter flex items-center gap-2">
-            <div class="w-5 h-5 bg-blue-600 rounded-sm skew-x-12 shadow-lg shadow-blue-600/20"></div>
-            <span class="text-slate-900">OKOVALO</span>
+    <!-- Global Nav -->
+    <nav class="fixed top-0 w-full z-[100] h-12 glass-nav border-b border-black/[0.05]">
+        <div class="max-w-[1024px] mx-auto h-full px-6 flex items-center justify-between text-[12px] font-normal tracking-tight text-black/80">
+            <div class="flex items-center gap-8">
+                <a href="#" class="hover:text-black transition-colors"><i data-lucide="layers" class="w-4 h-4"></i></a>
+                <div class="hidden md:flex gap-6">
+                    <a href="#" class="hover:text-black transition-colors">Store</a>
+                    <a href="#" class="hover:text-black transition-colors">Solutions</a>
+                    <a href="#" class="hover:text-black transition-colors">Global</a>
+                    <a href="#" class="hover:text-black transition-colors">Support</a>
+                </div>
+            </div>
+            <div class="flex gap-6">
+                <i data-lucide="search" class="w-4 h-4 cursor-pointer"></i>
+                <i data-lucide="shopping-bag" class="w-4 h-4 cursor-pointer"></i>
+            </div>
         </div>
-        <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
-            <a href="#" class="hover:text-blue-600 transition">Engine</a>
-            <a href="#" class="hover:text-blue-600 transition">Network</a>
-            <a href="#" class="hover:text-blue-600 transition">Nodes</a>
-        </div>
-        <button class="px-5 py-2 border border-slate-200 rounded-full text-xs font-bold text-slate-900 hover:bg-slate-50 transition">
-            Launch Console
-        </button>
     </nav>
 
-    <main class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 z-10">
-        
-        <!-- Animated Interface Fragments -->
-        <div class="absolute inset-0 pointer-events-none">
-            <div class="glass-badge float-animation absolute top-[15%] left-[8%] p-4 rounded-xl flex items-center gap-4 pointer-events-auto" style="animation-delay: 0s;">
-                <div class="w-10 h-10 rounded bg-blue-50 flex items-center justify-center text-blue-600">
-                    <i class="fas fa-terminal text-sm"></i>
-                </div>
-                <div>
-                    <div class="text-[10px] text-slate-400 font-bold uppercase">System Status</div>
-                    <div class="text-sm font-bold tracking-tight text-slate-700">Active Nodes: 1,402</div>
-                </div>
-            </div>
-
-            <div class="glass-badge float-animation absolute bottom-[20%] left-[10%] p-4 rounded-xl flex items-center gap-4 pointer-events-auto" style="animation-delay: -2s;">
-                <div class="w-10 h-10 rounded bg-emerald-50 flex items-center justify-center text-emerald-600">
-                    <i class="fas fa-microchip text-sm"></i>
-                </div>
-                <div>
-                    <div class="text-[10px] text-slate-400 font-bold uppercase">Processing</div>
-                    <div class="text-sm font-bold tracking-tight text-slate-700">99.9% Efficiency</div>
-                </div>
-            </div>
-
-            <div class="glass-badge float-animation absolute top-[25%] right-[10%] p-4 rounded-xl flex items-center gap-4 pointer-events-auto" style="animation-delay: -4s;">
-                <div class="w-10 h-10 rounded bg-purple-50 flex items-center justify-center text-purple-600">
-                    <i class="fas fa-shield-halved text-sm"></i>
-                </div>
-                <div>
-                    <div class="text-[10px] text-slate-400 font-bold uppercase">Security</div>
-                    <div class="text-sm font-bold tracking-tight text-slate-700">Encrypted Layer</div>
-                </div>
+    <!-- Hero: Massive Impact & Whitespace -->
+    <section class="pt-32 pb-12 overflow-hidden bg-white">
+        <div class="max-w-[1200px] mx-auto px-6 text-center">
+            <h1 class="text-[56px] md:text-[80px] font-bold tracking-tight leading-[1.05] mb-6">
+                Business Suite.<br>
+                <span class="text-black/40">Powerful. Beautiful. Simple.</span>
+            </h1>
+            <p class="text-[21px] md:text-[24px] text-gray-500 max-w-2xl mx-auto mb-10 font-normal leading-relaxed">
+                Experience the world's most intuitive platform designed for elite operations.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-20">
+                <button class="apple-button bg-[#0071e3] text-white px-8 py-3 rounded-full font-medium text-[17px]">
+                    Book a demo
+                </button>
+                <a href="#" class="text-[#0066cc] hover:underline text-[19px] flex items-center gap-1">
+                    Watch the film <i data-lucide="play-circle" class="w-5 h-5"></i>
+                </a>
             </div>
         </div>
 
-        <div class="text-center max-w-6xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 border border-blue-100 rounded-full bg-blue-50/50 text-[10px] font-bold tracking-widest uppercase mb-6 text-blue-600">
-                <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
-                v4.0 Core Engine Live
-            </div>
-
-            <h1 class="hero-title mb-10 text-slate-900">
-                <span>ORCHESTRATE</span> <br>
-                <span class="text-slate-200 hover:text-slate-900">EVERYTHING.</span>
-            </h1>
-
-            <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-16">
-                <div class="scroller">
-                    <div class="scroller-inner text-left">
-                        <div class="h-10 text-xl font-medium text-slate-500">Automate your Finance core.</div>
-                        <div class="h-10 text-xl font-medium text-slate-500">Scale your Supply Chain.</div>
-                        <div class="h-10 text-xl font-medium text-slate-500">Empower your Talent hub.</div>
-                        <div class="h-10 text-xl font-medium text-slate-500">Deploy Global Intelligence.</div>
+        <!-- Product Hero Visual -->
+        <div class="max-w-[1440px] mx-auto px-4 md:px-20">
+            <div class="relative w-full aspect-[21/9] rounded-[40px] overflow-hidden bg-black shadow-[0_40px_100px_rgba(0,0,0,0.1)]">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=100&w=2000" 
+                     class="w-full h-full object-cover opacity-90" alt="Interface">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-3/4 h-3/4 bg-white/10 backdrop-blur-3xl rounded-3xl border border-white/20 shadow-2xl float p-8">
+                        <div class="flex gap-4 mb-8">
+                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="h-10 w-1/3 bg-white/20 rounded-lg"></div>
+                            <div class="grid grid-cols-3 gap-6">
+                                <div class="h-32 bg-white/10 rounded-xl"></div>
+                                <div class="h-32 bg-white/10 rounded-xl"></div>
+                                <div class="h-32 bg-white/10 rounded-xl"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="flex gap-4">
-                    <button class="px-8 py-4 bg-blue-600 text-white rounded font-bold text-sm uppercase tracking-wider hover:bg-blue-700 transition-all duration-300 shadow-xl shadow-blue-600/20">
-                        Get Started
-                    </button>
-                    <button class="px-8 py-4 border border-slate-200 bg-white text-slate-600 rounded font-bold text-sm uppercase tracking-wider hover:border-slate-400 transition-all">
-                        Documentation
-                    </button>
-                </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Dashboard Preview Snippet - Light Mode Polish -->
-            <div class="relative max-w-4xl mx-auto rounded-t-2xl border-t border-x border-slate-200 bg-gradient-to-b from-slate-50 to-transparent p-4 md:p-8 shadow-2xl shadow-slate-200">
-                <div class="flex gap-1.5 mb-6">
-                    <div class="w-2 h-2 rounded-full bg-slate-200"></div>
-                    <div class="w-2 h-2 rounded-full bg-slate-200"></div>
-                    <div class="w-2 h-2 rounded-full bg-slate-200"></div>
+    <!-- Bento Grid Features: Systematic Layout -->
+    <section class="py-24 bg-white">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-6">
+                <!-- Large Card -->
+                <div class="md:col-span-8 bento-card p-12 flex flex-col justify-between min-h-[500px]">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-4">Zero training required.</h3>
+                        <p class="text-gray-500 text-lg max-w-sm">Intuitive by nature. So your team can focus on what matters, not how the software works.</p>
+                    </div>
+                    <div class="relative h-64 mt-8">
+                         <div class="absolute right-0 bottom-0 w-full h-full bg-blue-500/10 rounded-2xl border border-blue-500/20 translate-y-10 translate-x-10 p-6">
+                            <div class="w-1/2 h-4 bg-blue-500/30 rounded mb-4"></div>
+                            <div class="w-full h-32 bg-blue-500/20 rounded-xl"></div>
+                         </div>
+                    </div>
                 </div>
-                <div class="grid grid-cols-3 gap-4">
-                    <div class="h-32 rounded-lg bg-white border border-slate-100 animate-pulse"></div>
-                    <div class="h-32 rounded-lg bg-white border border-slate-100 animate-pulse" style="animation-delay: 0.2s;"></div>
-                    <div class="h-32 rounded-lg bg-white border border-slate-100 animate-pulse" style="animation-delay: 0.4s;"></div>
+                <!-- Tall Card -->
+                <div class="md:col-span-4 bento-card p-12 flex flex-col items-center text-center">
+                    <i data-lucide="shield-check" class="w-16 h-16 text-blue-600 mb-8"></i>
+                    <h3 class="text-2xl font-bold mb-4">Secure by Design</h3>
+                    <p class="text-gray-500">Your data is yours. End-to-end encryption for every business asset.</p>
+                    <div class="mt-auto pt-8">
+                        <span class="text-blue-600 font-medium">Learn more ></span>
+                    </div>
+                </div>
+                <!-- Small Card -->
+                <div class="md:col-span-4 bento-card p-8 bg-black text-white">
+                    <h3 class="text-xl font-bold mb-2">Global Scale</h3>
+                    <p class="text-gray-400 text-sm">Deploy in 140+ countries instantly.</p>
+                </div>
+                <!-- Small Card -->
+                <div class="md:col-span-4 bento-card p-8">
+                    <h3 class="text-xl font-bold mb-2">Real-time Sync</h3>
+                    <p class="text-gray-500 text-sm">Every device, perfectly in harmony.</p>
+                </div>
+                <!-- Small Card -->
+                <div class="md:col-span-4 bento-card p-8">
+                    <h3 class="text-xl font-bold mb-2">AI Insights</h3>
+                    <p class="text-gray-500 text-sm">Next-gen intelligence built-in.</p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Voices of Success: The Apple-Style Film Carousel -->
+    <section class="py-32 bg-[#f5f5f7] overflow-hidden">
+        <div class="max-w-[1200px] mx-auto px-6 mb-16">
+            <h2 class="text-[40px] md:text-[56px] font-bold tracking-tight">Voices of Success.</h2>
+        </div>
+
+        <div class="carousel-wrapper overflow-visible">
+            <div id="apple-carousel" class="flex gap-8 px-6 md:px-[calc((100vw-1200px)/2+1.5rem)]">
+                <!-- Film 1 -->
+                <div class="testimonial-card relative group p-12 md:p-20 flex flex-col justify-end min-h-[500px] md:min-h-[600px] shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1600" class="absolute inset-0 w-full h-full object-cover rounded-[32px] opacity-100 group-hover:scale-[1.02] transition-transform duration-1000" alt="Success">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-[32px]"></div>
+                    
+                    <div class="relative z-10 text-white">
+                        <div class="video-play-btn w-20 h-20 rounded-full flex items-center justify-center mb-8 cursor-pointer hover:scale-110 transition-transform">
+                            <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                        </div>
+                        <p class="text-2xl md:text-3xl font-medium mb-6 leading-tight max-w-2xl">
+                            "Okovalo redefined how our global teams collaborate. It's the most polished tool we've ever used."
+                        </p>
+                        <div>
+                            <p class="font-bold text-lg">Jordan Smith</p>
+                            <p class="text-white/60">Director of Operations, Vertex Group</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Film 2 -->
+                <div class="testimonial-card relative group p-12 md:p-20 flex flex-col justify-end min-h-[500px] md:min-h-[600px] shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=80&w=1600" class="absolute inset-0 w-full h-full object-cover rounded-[32px] opacity-100 group-hover:scale-[1.02] transition-transform duration-1000" alt="Success">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-[32px]"></div>
+                    
+                    <div class="relative z-10 text-white">
+                        <div class="video-play-btn w-20 h-20 rounded-full flex items-center justify-center mb-8 cursor-pointer hover:scale-110 transition-transform">
+                            <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                        </div>
+                        <p class="text-2xl md:text-3xl font-medium mb-6 leading-tight max-w-2xl">
+                            "The efficiency gains were immediate. We saved 40 hours a week on administration alone."
+                        </p>
+                        <div>
+                            <p class="font-bold text-lg">Aria Chen</p>
+                            <p class="text-white/60">CEO, Nova E-commerce</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Consultation: Progressive Disclosure -->
+    <section class="py-32 bg-white">
+        <div class="max-w-[1024px] mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">Consult with an expert.</h2>
+                <p class="text-gray-500 text-[19px] leading-relaxed mb-10">
+                    Get a personalized walkthrough of how Okovalo can transform your specific business logic.
+                </p>
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-1">
+                            <i data-lucide="check" class="w-3 h-3 text-blue-600"></i>
+                        </div>
+                        <p class="text-gray-600">Personalized configuration roadmap</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-1">
+                            <i data-lucide="check" class="w-3 h-3 text-blue-600"></i>
+                        </div>
+                        <p class="text-gray-600">Compliance and security audit overview</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Modern Calendar Component -->
+            <div class="bg-[#f5f5f7] rounded-[40px] p-8 shadow-inner border border-black/5">
+                <div class="flex justify-between items-center mb-8">
+                    <span class="text-lg font-bold">April 2024</span>
+                    <div class="flex gap-2">
+                        <div class="p-2 bg-white rounded-full cursor-pointer shadow-sm"><i data-lucide="chevron-left" class="w-4 h-4"></i></div>
+                        <div class="p-2 bg-white rounded-full cursor-pointer shadow-sm"><i data-lucide="chevron-right" class="w-4 h-4"></i></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-7 gap-3 mb-8 text-center">
+                    <span class="text-[11px] font-bold text-gray-400">S</span>
+                    <span class="text-[11px] font-bold text-gray-400">M</span>
+                    <span class="text-[11px] font-bold text-gray-400">T</span>
+                    <span class="text-[11px] font-bold text-gray-400">W</span>
+                    <span class="text-[11px] font-bold text-gray-400">T</span>
+                    <span class="text-[11px] font-bold text-gray-400">F</span>
+                    <span class="text-[11px] font-bold text-gray-400">S</span>
+                    <!-- Simplified Calendar Fill -->
+                    <div class="p-3 text-gray-300">28</div>
+                    <div class="p-3 text-gray-300">29</div>
+                    <div class="p-3 text-gray-300">30</div>
+                    <div class="p-3 bg-white rounded-xl shadow-sm font-bold">1</div>
+                    <div class="p-3 bg-white rounded-xl shadow-sm font-bold">2</div>
+                    <div class="p-3 bg-white rounded-xl shadow-sm font-bold">3</div>
+                    <div class="p-3 bg-white rounded-xl shadow-sm font-bold">4</div>
+                    <div class="p-3 bg-blue-600 text-white rounded-xl shadow-lg font-bold">5</div>
+                    <div class="p-3 bg-white rounded-xl shadow-sm font-bold">6</div>
+                </div>
+                <button class="w-full bg-black text-white py-4 rounded-2xl font-bold hover:scale-[1.02] transition-all">
+                    Schedule session
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA: Apple Mini Style -->
+    <section class="py-32 bg-[#f5f5f7]">
+        <div class="max-w-[800px] mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold mb-8">Elevate your business.</h2>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <button class="apple-button bg-[#0071e3] text-white px-10 py-4 rounded-full font-medium text-[19px]">
+                    Try Okovalo for free
+                </button>
+            </div>
+            <p class="mt-8 text-gray-500">No credit card required. Cancel anytime.</p>
+        </div>
+    </section>
+
+    <!-- Footer: Clean & Semantic -->
+    <footer class="bg-[#f5f5f7] text-black/60 pt-12 pb-20 border-t border-black/5">
+        <div class="max-w-[1024px] mx-auto px-6">
+            <div class="text-[12px] leading-relaxed border-b border-black/10 pb-8 mb-8">
+                <p>1. Performance claims based on internal testing compared to legacy business suites. Results may vary by industry and team size. 2. Support for 140+ regions requires Global Enterprise tier.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-black font-bold text-[12px] mb-4">Product</h4>
+                    <ul class="space-y-3 text-[12px]">
+                        <li><a href="#" class="hover:underline">Okovalo One</a></li>
+                        <li><a href="#" class="hover:underline">Global Suite</a></li>
+                        <li><a href="#" class="hover:underline">Security</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-black font-bold text-[12px] mb-4">Okovalo Store</h4>
+                    <ul class="space-y-3 text-[12px]">
+                        <li><a href="#" class="hover:underline">Find a Partner</a></li>
+                        <li><a href="#" class="hover:underline">Special Offers</a></li>
+                        <li><a href="#" class="hover:underline">Education</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-black font-bold text-[12px] mb-4">For Business</h4>
+                    <ul class="space-y-3 text-[12px]">
+                        <li><a href="#" class="hover:underline">Enterprise</a></li>
+                        <li><a href="#" class="hover:underline">Startups</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-black font-bold text-[12px] mb-4">Account</h4>
+                    <ul class="space-y-3 text-[12px]">
+                        <li><a href="#" class="hover:underline">Manage ID</a></li>
+                        <li><a href="#" class="hover:underline">Billing</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-black/10 text-[12px] flex flex-col md:flex-row justify-between gap-4">
+                <p>Copyright © 2024 Okovalo Inc. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms of Use</a>
+                    <a href="#" class="hover:underline">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Interactive Glow Movement
-        document.addEventListener('mousemove', (e) => {
-            const glow = document.querySelector('.glow-sphere');
-            const x = e.clientX - 400;
-            const y = e.clientY - 400;
-            glow.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px)`;
+        // Init Lucide
+        lucide.createIcons();
+
+        // GSAP Plugins
+        gsap.registerPlugin(ScrollTrigger, Draggable);
+
+        // Apple-style Carousel with Draggable
+        const track = document.getElementById('apple-carousel');
+        const cards = document.querySelectorAll('.testimonial-card');
+        
+        Draggable.create(track, {
+            type: "x",
+            edgeResistance: 0.9,
+            bounds: {
+                minX: -(track.scrollWidth - window.innerWidth + 100),
+                maxX: 0
+            },
+            inertia: true
         });
+
+        // Entrance Animations
+        gsap.from("h1", { 
+            y: 40, 
+            opacity: 0, 
+            duration: 1.2, 
+            ease: "power4.out" 
+        });
+
+        gsap.from(".bento-card", {
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".bento-card",
+                start: "top 85%"
+            }
+        });
+
+        // Navigation Hide/Show on Scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const nav = document.querySelector('nav');
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            nav.style.transition = 'transform 0.4s ease';
+            lastScroll = currentScroll;
+        });
+
     </script>
 </body>
 </html>
