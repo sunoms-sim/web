@@ -1,785 +1,2154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Okovalo — World's #1 User Friendly Business Suite</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700&family=Zain:wght@700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --text-primary:#1d1d1f;
-    --text-secondary:#6b7280;
-    --text-secondary-2:#4b5563;
-    --text-body:#374151;
-    --text-body-2:#424a5b;
-    --blue:#0071e3;
-    --blue-link:#1e40af;
-    --bg-soft:#f5f5f7;
-    --bg-soft-2:#f9fafb;
-    --bg-soft-3:#f3f4f6;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{background:#fff;color:var(--text-primary);}
-  body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
-  img{display:block;max-width:none;}
-  a{color:inherit;text-decoration:none;}
-  .container{max-width:1200px;margin:0 auto;position:relative;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Okovalo — World's #1 User Friendly Business Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lato:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700&family=Zain:wght@700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --text-primary: #1d1d1f;
+      --text-secondary: #6b7280;
+      --text-secondary-2: #4b5563;
+      --text-body: #374151;
+      --text-body-2: #424a5b;
+      --blue: #0071e3;
+      --blue-link: #1e40af;
+      --bg-soft: #f5f5f7;
+      --bg-soft-2: #f9fafb;
+      --bg-soft-3: #f3f4f6;
+    }
 
-  /* ---------- Global Nav ---------- */
-  .nav-wrap{
-    position:sticky;top:0;z-index:100;
-    width:100%;
-    background:rgba(255,255,255,0.8);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(0,0,0,0.05);
-  }
-  .nav{
-    max-width:1200px;margin:0 auto;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:8px 0;
-  }
-  .nav .links{display:flex;align-items:center;gap:24px;}
-  .nav .logo{display:flex;align-items:center;gap:4px;}
-  .nav .logo img{width:16px;height:16px;}
-  .nav .logo span{font-size:12px;letter-spacing:-0.3px;color:rgba(0,0,0,0.8);}
-  .nav .links a{font-size:12px;letter-spacing:-0.3px;color:rgba(0,0,0,0.8);}
-  .nav .cta{display:flex;align-items:center;gap:24px;}
-  .nav .cta .partner{font-size:12px;letter-spacing:-0.3px;color:rgba(0,0,0,0.8);}
-  .nav .signin{
-    background:#0071e3;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;
-    font-size:13px;line-height:19.5px;border-radius:8px;padding:8px 16px;
-    box-shadow:0 1px 1px #bfdbfe;
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* ---------- Hero ---------- */
-  .hero{padding:131.5px 0 0;text-align:center;}
-  .hero-inner{display:flex;flex-direction:column;align-items:center;gap:64px;}
-  .hero h1{
-    font-weight:700;font-size:80px;line-height:88px;letter-spacing:-2px;color:var(--text-primary);
-  }
-  .hero h1 .sub{color:rgba(0,0,0,0.4);display:block;}
-  .hero .tag{font-size:24px;line-height:36px;color:var(--text-secondary);margin-top:8px;}
-  .hero-ctas{display:flex;align-items:center;gap:24px;}
-  .btn-primary{
-    background:#0071e3;color:#fff;border-radius:9999px;height:49.5px;padding:0 30px;
-    display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:500;
-  }
-  .btn-watch{display:flex;align-items:center;gap:4px;font-size:19px;color:var(--blue-link);}
-  .btn-watch img{width:20px;height:20px;}
-  .company{width:100%;position:relative;margin-top:10px;padding-bottom:47px;}
-  .company-fade{
-    position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 70%,#fff 100%);
-  }
-  .logos{display:flex;align-items:center;height:26px;overflow:hidden;}
-  .logos .logo-item{width:128px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-  .logos .logo-item img{max-height:15px;width:auto;opacity:.7;}
+    html,
+    body {
+      background: #fff;
+      color: var(--text-primary);
+    }
 
-  /* ---------- Features ---------- */
-  .features{padding:96px 0 0;}
-  .row1{position:relative;width:1200px;height:699.56px;border-radius:32px;overflow:hidden;background:#f5f5f7;margin:0 auto;}
-  .row1 .blob{position:absolute;pointer-events:none;}
-  .row1 .blob img{width:100%;height:100%;}
-  .row1 .blob-2{left:50%;top:calc(50% - 39px);transform:translate(-50%,-50%);width:1004px;height:1005px;}
-  .row1 .blob-1{left:276px;top:27px;width:648px;height:648px;}
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  .preview{
-    position:absolute;left:50%;top:calc(50% + 0.2px);transform:translate(-50%,-50%);
-    width:1037px;height:559px;border-radius:20px;overflow:hidden;
-    background:rgba(255,255,255,0.2);backdrop-filter:blur(3px);
-    border:1px solid rgba(168,168,168,0.2);
-    display:flex;flex-direction:column;
-  }
-  .topnav{
-    background:rgba(255,255,255,0.6);border-bottom:2px solid #fff;
-    display:flex;align-items:center;justify-content:space-between;padding:11.5px 20px;
-    width:100%;
-  }
-  .topnav .logo{font-family:'Zain',sans-serif;font-weight:700;color:#3d5afe;font-size:22px;}
-  .topnav .icons{display:flex;gap:12px;align-items:center;}
-  .topnav .icons img{width:22px;height:22px;padding:4px;box-sizing:content-box;}
-  .topnav .right{display:flex;gap:12px;align-items:center;}
+    img {
+      display: block;
+      max-width: none;
+    }
 
-  .mainbody{display:flex;flex:1;min-height:0;width:100%;}
-  .sidebar{
-    width:188px;background:rgba(255,255,255,0.6);border-right:2px solid #fff;
-    display:flex;flex-direction:column;justify-content:space-between;padding:8px;position:relative;
-  }
-  .side-menu{display:flex;flex-direction:column;gap:8px;}
-  .side-item{
-    display:flex;align-items:center;gap:4px;padding:0 4px 0 0;border-radius:4px;height:40px;
-    font-family:'Lato',sans-serif;font-size:16px;color:#4a4a4a;letter-spacing:-0.16px;
-  }
-  .side-item.active{background:rgba(255,255,255,0.6);border:1px solid #fff;box-shadow:0 4px 4px rgba(0,0,0,.16);}
-  .side-item .ic{width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .side-item .ic-box{width:28px;height:28px;border-radius:4px;background-size:cover;}
-  .apps-strip{position:absolute;left:13px;top:19px;display:flex;flex-direction:column;gap:24px;}
-  .apps-strip .app-ic{width:24px;height:24px;border-radius:4px;box-shadow:inset -2px 2px 4px rgba(0,0,0,.16);}
-  .collapse-row{display:flex;align-items:center;justify-content:space-between;padding:8px;width:100%;}
-  .collapse-row img{width:19px;height:19px;}
-  .collapse-icon{background:rgba(255,255,255,.6);padding:8px;border-radius:2px;box-shadow:4px 4px 4px rgba(0,0,0,.08);}
-  .collapse-icon img{width:17px;height:17px;}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-  .body-content{flex:1;padding:8px 16px;display:flex;flex-direction:column;gap:16px;min-width:0;}
-  .page-header{display:flex;align-items:center;justify-content:space-between;padding:8px 0 8px 16px;}
-  .page-header h2{font-family:'Lato',sans-serif;font-weight:500;font-size:20px;color:#0d0d0d;letter-spacing:0.2px;}
-  .page-header .ctas{display:flex;gap:16px;align-items:center;}
-  .add-widget{
-    background:linear-gradient(180deg,#16a888 49%,#42b1eb 100%);border:1px solid #16a888;border-radius:4px;
-    display:flex;align-items:stretch;color:#fff;font-family:'Lato',sans-serif;font-weight:700;font-size:16px;
-    box-shadow:4px 4px 2px rgba(0,0,0,.08);
-  }
-  .add-widget span{padding:6px 8px;display:flex;align-items:center;}
-  .add-widget .arrow{border-left:1px solid #fff;padding:0 6px;display:flex;align-items:center;}
-  .icon-btn-sq{
-    background:rgba(237,244,254,.6);border:1px solid #16a888;border-radius:4px;padding:4px;
-    box-shadow:4px 4px 4px rgba(0,0,0,.08);width:30px;height:30px;display:flex;align-items:center;justify-content:center;
-  }
-  .icon-btn-sq img{width:22px;height:22px;}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
 
-  .cards-row{display:flex;gap:16px;width:100%;}
-  .card-white{
-    background:rgba(255,255,255,.6);border:2px solid #fff;border-radius:4px;
-    box-shadow:4px 4px 4px rgba(0,0,0,.04);padding:16px;
-  }
-  .card-greet{flex:1;display:flex;flex-direction:column;justify-content:space-between;height:170px;}
-  .card-greet .g1{font-family:'Lato',sans-serif;font-size:15px;color:#4a4a4a;letter-spacing:0.2px;}
-  .card-greet .g2{font-family:'Lato',sans-serif;font-weight:500;font-size:18px;color:#0d0d0d;letter-spacing:-0.2px;}
-  .card-greet .g3{font-family:'Lato',sans-serif;font-size:14px;color:#777;letter-spacing:0.3px;line-height:20px;}
-  .card-stat{width:280px;height:170px;display:flex;flex-direction:column;justify-content:space-between;}
-  .card-stat .t1{font-family:'Lato',sans-serif;font-size:16px;color:#4a4a4a;}
-  .card-stat .ic{width:48px;height:48px;border-radius:4px;box-shadow:inset -2px 2px 4px rgba(0,0,0,.16);}
-  .card-stat .amt{font-family:'Lato',sans-serif;font-weight:700;font-size:16px;color:#4a4a4a;letter-spacing:0.2px;}
+    /* ---------- Global Nav ---------- */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
 
-  .cards2{display:flex;gap:16px;width:100%;}
-  .chartcard{
-    flex:1;background:rgba(255,255,255,.6);border:2px solid #fff;border-radius:8px;
-    box-shadow:4px 4px 4px rgba(0,0,0,.04);overflow:hidden;
-  }
-  .chartcard-title{
-    display:flex;align-items:center;justify-content:space-between;padding:8px 12px 8px 16px;
-    border-bottom:1px solid #e2e2e2;font-family:'Lato',sans-serif;font-size:16px;color:#0d0d0d;
-  }
-  .chartcard-title .drop{display:flex;gap:4px;align-items:center;font-size:14px;color:#777;letter-spacing:0.3px;}
-  .chartcard-title .drop img{width:16px;height:16px;}
-  .chart-body{display:flex;padding:16px;gap:16px;}
-  .status-list{display:flex;flex-direction:column;gap:8px;}
-  .status-item{display:flex;align-items:center;gap:4px;font-family:'Lato',sans-serif;font-size:15px;color:#4a4a4a;letter-spacing:0.2px;}
-  .status-item .dot{width:9px;height:9px;border-radius:50%;}
-  .dot-green{background:#16a34a;} .dot-red{background:#ef4444;} .dot-orange{background:#f59e0b;}
-  .chart-img{flex:1;}
-  .chart-img img{width:100%;}
-  .timeline{display:flex;justify-content:space-between;font-family:'Lato',sans-serif;font-size:12px;color:#777;letter-spacing:0.3px;padding-top:8px;}
-  .timeline span{flex:1;text-align:center;}
-  .expenses-donut{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;}
-  .expenses-donut img{width:106px;height:106px;}
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+    }
 
-  /* row 2 / row 3 */
-  .row2{display:flex;gap:24px;align-items:stretch;width:1200px;margin:24px auto 0;}
-  .large-card{flex:1;background:#f5f5f7;border-radius:32px;overflow:hidden;display:flex;flex-direction:column;}
-  .large-card .text{padding:48px;display:flex;flex-direction:column;gap:20px;}
-  .large-card h3{font-size:30px;font-weight:700;color:var(--text-primary);}
-  .large-card p{font-size:18px;line-height:28px;color:var(--text-secondary);}
-  .large-card .learn{font-size:16px;font-weight:500;color:var(--blue-link);}
-  .large-card .view{flex:1;padding-left:116px;display:flex;align-items:flex-end;}
-  .mock-panel{
-    width:100%;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);
-    border-radius:16px 16px 16px 32px;padding:25px;display:flex;flex-direction:column;gap:16px;
-  }
-  .mock-bar{height:32px;background:#0071e3;opacity:.2;border-radius:4px;}
-  .mock-icons{display:flex;justify-content:space-between;padding:0 4px;opacity:.2;}
-  .mock-icons .ic64{width:64px;height:64px;border-radius:16px;box-shadow:inset -2px 2px 4px rgba(0,0,0,.16);}
-  .mock-block{height:84px;background:#0071e3;opacity:.2;border-radius:12px;}
+    .nav .links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
 
-  .tall-card{
-    width:384px;background:#f5f5f7;border-radius:32px;padding:48px 56px;display:flex;align-items:center;
-  }
-  .tall-inner{display:flex;flex-direction:column;align-items:center;gap:128px;}
-  .tall-inner .icon64{width:64px;height:64px;}
-  .tall-text{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;}
-  .tall-text h3{font-size:24px;font-weight:700;color:var(--text-primary);}
-  .tall-text p{font-size:16px;line-height:24px;color:var(--text-secondary);}
-  .tall-card .learn{font-size:16px;font-weight:500;color:var(--blue-link);}
+    .nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-  .row3{display:flex;gap:24px;width:1200px;margin:24px auto 0;}
-  .small-card{flex:1;border-radius:32px;padding:32px;}
-  .small-card h4{font-size:20px;font-weight:700;line-height:28px;}
-  .small-card p{font-size:14px;line-height:20px;margin-top:8px;}
-  .small-card.dark{background:#000;color:#fff;}
-  .small-card.dark p{color:#9ca3af;}
-  .small-card.light{background:#f5f5f7;color:var(--text-primary);}
-  .small-card.light p{color:var(--text-secondary);}
+    .nav .logo img {
+      width: 16px;
+      height: 16px;
+    }
 
-  /* ---------- Testimonial ---------- */
-  .testimonial{padding:161px 0 0;width:1200px;margin:0 auto;}
-  .testimonial h2{font-size:56px;font-weight:700;letter-spacing:-1.4px;color:var(--text-primary);margin-bottom:64px;}
-  .carousel{display:flex;gap:32px;width:100%;overflow:hidden;}
-  .film{
-    position:relative;width:980px;min-width:980px;height:600px;border-radius:32px;overflow:hidden;
-    display:flex;flex-direction:column;justify-content:flex-end;padding:80px 260px 80px 80px;
-    box-shadow:0 1px 1px rgba(0,0,0,.05);
-  }
-  .film img.bgphoto{position:absolute;inset:0;width:100%;height:108%;top:-4%;object-fit:cover;}
-  .film .scrim{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,0) 100%);}
-  .film .content{position:relative;display:flex;flex-direction:column;gap:32px;}
-  .quote-icon{
-    width:80px;height:80px;border-radius:9999px;background:rgba(255,255,255,.2);backdrop-filter:blur(5px);
-    border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;
-  }
-  .quote-icon img{width:32px;height:32px;}
-  .film blockquote{font-size:30px;font-weight:500;color:#fff;line-height:36px;}
-  .film .name b{display:block;font-size:18px;font-weight:700;color:#fff;}
-  .film .name span{font-size:16px;color:rgba(220,220,220,.8);}
+    .nav .logo span {
+      font-size: 12px;
+      letter-spacing: -0.3px;
+      color: rgba(0, 0, 0, 0.8);
+    }
 
-  /* ---------- Why us ---------- */
-  .whyus{padding:160px 0 0;width:1200px;margin:0 auto;text-align:center;}
-  .whyus h2{font-size:56px;font-weight:700;letter-spacing:-1.4px;color:var(--text-primary);}
-  .whyus .sub{font-size:21px;color:#4b5563;margin-top:16px;}
-  .cmp-table{margin-top:81px;text-align:left;}
-  .cmp-head{display:flex;align-items:center;justify-content:space-between;}
-  .cmp-head .feature-label{flex:1;font-size:14px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#4b5563;}
-  .cmp-head .cap{display:flex;gap:16px;}
-  .cap-col{width:314.67px;height:101px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
-    border:1px solid rgba(0,0,0,.05);border-radius:32px 32px 0 0;}
-  .cap-col.others{background:#f9fafb;color:#4b5563;}
-  .cap-col.ours{background:linear-gradient(180deg,#fff,#f5f5f7);color:#1e40af;border-color:rgba(59,130,246,.1);}
-  .cmp-row{display:flex;align-items:center;justify-content:space-between;}
-  .cmp-row .row-label{flex:1;padding:39px 0;font-size:17px;font-weight:600;color:var(--text-primary);border-bottom:1px solid rgba(0,0,0,.05);}
-  .cmp-row .cap{display:flex;gap:16px;}
-  .cell{width:314.67px;height:105px;display:flex;align-items:center;justify-content:center;text-align:center;
-    font-size:16px;color:#4b5563;border-bottom:1px solid rgba(0,0,0,.05);}
-  .cell.others{background:#f9fafb;}
-  .cell.ours{background:linear-gradient(180deg,#fff,#f5f5f7);}
-  .cmp-row.last .row-label{border-bottom:none;}
-  .cmp-row.last .cell{border-bottom:none;height:104px;}
-  .cmp-row.last .cell.others{border-radius:0 0 0 32px;}
-  .cmp-row.last .cell.ours{border-radius:0 0 32px 0;box-shadow:0 20px 20px rgba(0,0,0,.03);}
+    .nav .links a {
+      font-size: 12px;
+      letter-spacing: -0.3px;
+      color: rgba(0, 0, 0, 0.8);
+    }
 
-  /* ---------- Industry ---------- */
-  .industry{padding:160px 0 0;width:1200px;margin:0 auto;}
-  .industry h2{font-size:56px;font-weight:700;letter-spacing:-1.4px;color:var(--text-primary);}
-  .industry .sub{font-size:21px;color:#4b5563;margin-top:18px;}
-  .tabs{display:flex;gap:12px;margin-top:64px;}
-  .tab{padding:14px 25px;border-radius:9999px;font-size:14px;font-weight:500;background:#f3f4f6;color:#4b5563;}
-  .tab.active{background:#fff;color:#1e40af;padding:16px 25px;border:1px solid rgba(0,0,0,.05);box-shadow:0 4px 10px rgba(0,0,0,.08);}
-  .industry-grid{
-    margin-top:48px;background:#f9fafb;border-radius:32px;padding:48px;display:flex;align-items:center;
-    justify-content:space-between;overflow:hidden;
-  }
-  .industry-pic{width:379px;height:474px;position:relative;border-radius:40px;overflow:hidden;border:1px solid rgba(255,255,255,.1);}
-  .industry-pic img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);}
-  .industry-pic .caption{
-    position:absolute;left:24px;right:24px;bottom:24px;background:rgba(255,255,255,.1);backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;
-  }
-  .industry-pic .caption .n{font-size:20px;font-weight:700;color:rgba(255,255,255,.62);}
-  .industry-pic .caption .r{font-size:14px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#b2caff;}
-  .industry-pic .caption .q{font-size:20px;color:#fff;letter-spacing:0.4px;}
-  .industry-dis{width:483.43px;display:flex;flex-direction:column;gap:40px;}
-  .industry-dis .icon{width:64px;height:64px;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 1px rgba(0,0,0,.05);}
-  .industry-dis .icon img{width:32px;height:32px;}
-  .industry-dis h3{font-size:30px;font-weight:700;color:var(--text-primary);}
-  .industry-dis .desc{font-size:18px;color:#4b5563;line-height:28px;margin-top:8px;}
-  .points-list{display:flex;flex-direction:column;gap:16px;}
-  .point{display:flex;gap:12px;align-items:center;font-size:14px;font-weight:500;color:#374151;}
-  .point img{width:20px;height:20px;}
-  .industry-dis .learn{font-size:16px;font-weight:500;color:var(--blue-link);}
+    .nav .cta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
 
-  /* ---------- Reservation ---------- */
-  .reservation{padding:160px 0 0;width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;}
-  .res-text{width:560px;display:flex;flex-direction:column;gap:32px;}
-  .res-text h2{font-size:48px;font-weight:700;letter-spacing:-1.2px;color:var(--text-primary);}
-  .res-points{display:flex;flex-direction:column;gap:24px;}
-  .res-point{display:flex;gap:16px;align-items:flex-start;}
-  .res-point .ic{width:24px;height:24px;border-radius:9999px;background:#dbeafe;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .res-point .ic img{width:12px;height:12px;}
-  .res-point p{font-size:16px;color:#424a5b;line-height:24px;}
-  .profiles{display:flex;gap:8px;align-items:center;}
-  .avatar-stack{display:flex;}
-  .avatar-stack img,.avatar-stack .plus{
-    width:40px;height:40px;border-radius:9999px;border:2px solid #fff;margin-right:-10px;
-    object-fit:cover;object-position:center;
-  }
-  .avatar-stack .plus{background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:10px;color:#475569;}
-  .profiles p{font-size:16px;color:#424a5b;}
-  .try-btn{
-    background:#0f172a;color:#fff;border-radius:16px;padding:18px 24px;display:inline-flex;align-items:center;justify-content:center;
-    font-weight:700;font-size:16px;letter-spacing:0.48px;box-shadow:0 10px 7.5px #e2e8f0,0 4px 3px #e2e8f0;width:fit-content;
-  }
-  .res-graphic{
-    width:478px;height:478px;border-radius:32px;background:#fff;position:relative;overflow:hidden;
-    box-shadow:0 0 4px rgba(0,0,0,.08), inset 0 2px 4px 1px rgba(0,0,0,.05);
-  }
-  .res-graphic img.path{position:absolute;left:15.69%;right:17.64%;top:16.35%;bottom:16.98%;width:64.67%;}
-  .step{position:absolute;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;}
-  .step img{width:20px;height:20px;}
-  .step .lbl{font-size:12px;color:#374151;}
-  .step .lbl b{font-weight:700;}
-  .step1{left:calc(50% + 115px);top:calc(50% + 168px);transform:translate(-50%,-50%);}
-  .step1 .lbl b{color:#f59e0b;}
-  .step2{left:calc(50% - 83px);top:calc(50% + 14px);transform:translate(-50%,-50%);}
-  .step2 .lbl b{color:#f59e0b;}
-  .step3{left:calc(50% - 58px);top:calc(50% - 168px);transform:translate(-50%,-50%);}
-  .step3 .lbl b{color:#16a34a;}
+    .nav .cta .partner {
+      font-size: 12px;
+      letter-spacing: -0.3px;
+      color: rgba(0, 0, 0, 0.8);
+    }
 
-  /* ---------- Footer ---------- */
-  .footer-wrap{margin-top:242px;background:#f5f5f7;}
-  .final-cta{padding:128px 629px;display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;}
-  .final-cta h2{font-size:60px;font-weight:700;letter-spacing:-0.8px;color:var(--text-primary);line-height:68px;}
-  .final-action{display:flex;flex-direction:column;align-items:center;gap:28px;}
-  .final-action .btn-primary{padding:18px 40px;height:auto;font-size:19px;border-radius:9999px;}
-  .final-action p{font-size:16px;color:#4b5563;}
-  .footer{border-top:1px solid rgba(0,0,0,.05);padding:40px 472px 60px;}
-  .footer-inner{display:flex;flex-direction:column;gap:40px;}
-  .social{
-    display:flex;align-items:center;justify-content:space-between;padding:24px 0;
-    border-bottom:1px solid rgba(0,0,0,.1);
-  }
-  .social .email{font-size:12px;color:rgba(0,0,0,.6);}
-  .social .icons{display:flex;gap:16px;}
-  .social .icons img{height:24px;}
-  .flinks{display:flex;justify-content:space-between;}
-  .fcol{display:flex;flex-direction:column;gap:16px;font-size:12px;}
-  .fcol .head{font-weight:700;color:#000;}
-  .fcol a{color:rgba(0,0,0,.6);}
-  .copyright{
-    display:flex;align-items:center;justify-content:space-between;padding-top:24px;
-    border-top:1px solid rgba(0,0,0,.1);font-size:12px;color:rgba(0,0,0,.6);
-  }
-  .copyright .links{display:flex;gap:16px;}
-</style>
+    .nav .signin {
+      background: #0071e3;
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 19.5px;
+      border-radius: 8px;
+      padding: 8px 16px;
+      box-shadow: 0 1px 1px #bfdbfe;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 131.5px 0 0;
+      text-align: center;
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .hero h1 {
+      font-weight: 700;
+      font-size: 80px;
+      line-height: 88px;
+      letter-spacing: -2px;
+      color: var(--text-primary);
+    }
+
+    .hero h1 .sub {
+      color: rgba(0, 0, 0, 0.4);
+      display: block;
+    }
+
+    .hero .tag {
+      font-size: 24px;
+      line-height: 36px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .btn-primary {
+      background: #0071e3;
+      color: #fff;
+      border-radius: 9999px;
+      height: 49.5px;
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    .btn-watch {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 19px;
+      color: var(--blue-link);
+    }
+
+    .btn-watch img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .company {
+      width: 100%;
+      position: relative;
+      margin-top: 10px;
+      padding-bottom: 47px;
+    }
+
+    .company-fade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 70%, #fff 100%);
+    }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      height: 26px;
+      overflow: hidden;
+    }
+
+    .logos .logo-item {
+      width: 128px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logos .logo-item img {
+      max-height: 15px;
+      width: auto;
+      opacity: .7;
+    }
+
+    /* ---------- Features ---------- */
+    .features {
+      padding: 96px 0 0;
+    }
+
+    .row1 {
+      position: relative;
+      width: 1200px;
+      height: 699.56px;
+      border-radius: 32px;
+      overflow: hidden;
+      background: #f5f5f7;
+      margin: 0 auto;
+    }
+
+    .row1 .blob {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .row1 .blob img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .row1 .blob-2 {
+      left: 50%;
+      top: calc(50% - 39px);
+      transform: translate(-50%, -50%);
+      width: 1004px;
+      height: 1005px;
+    }
+
+    .row1 .blob-1 {
+      left: 276px;
+      top: 27px;
+      width: 648px;
+      height: 648px;
+    }
+
+    .preview {
+      position: absolute;
+      left: 50%;
+      top: calc(50% + 0.2px);
+      transform: translate(-50%, -50%);
+      width: 1037px;
+      height: 559px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(3px);
+      border: 1px solid rgba(168, 168, 168, 0.2);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topnav {
+      background: rgba(255, 255, 255, 0.6);
+      border-bottom: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11.5px 20px;
+      width: 100%;
+    }
+
+    .topnav .logo {
+      font-family: 'Zain', sans-serif;
+      font-weight: 700;
+      color: #3d5afe;
+      font-size: 22px;
+    }
+
+    .topnav .icons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .topnav .icons img {
+      width: 22px;
+      height: 22px;
+      padding: 4px;
+      box-sizing: content-box;
+    }
+
+    .topnav .right {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .mainbody {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+    }
+
+    .sidebar {
+      width: 188px;
+      background: rgba(255, 255, 255, 0.6);
+      border-right: 2px solid #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 8px;
+      position: relative;
+    }
+
+    .side-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .side-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 4px 0 0;
+      border-radius: 4px;
+      height: 40px;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #4a4a4a;
+      letter-spacing: -0.16px;
+    }
+
+    .side-item.active {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid #fff;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, .16);
+    }
+
+    .side-item .ic {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .side-item .ic-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      background-size: cover;
+    }
+
+    .apps-strip {
+      position: absolute;
+      left: 13px;
+      top: 19px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .apps-strip .app-ic {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      box-shadow: inset -2px 2px 4px rgba(0, 0, 0, .16);
+    }
+
+    .collapse-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px;
+      width: 100%;
+    }
+
+    .collapse-row img {
+      width: 19px;
+      height: 19px;
+    }
+
+    .collapse-icon {
+      background: rgba(255, 255, 255, .6);
+      padding: 8px;
+      border-radius: 2px;
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, .08);
+    }
+
+    .collapse-icon img {
+      width: 17px;
+      height: 17px;
+    }
+
+    .body-content {
+      flex: 1;
+      padding: 8px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0 8px 16px;
+    }
+
+    .page-header h2 {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 20px;
+      color: #0d0d0d;
+      letter-spacing: 0.2px;
+    }
+
+    .page-header .ctas {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .add-widget {
+      background: linear-gradient(180deg, #16a888 49%, #42b1eb 100%);
+      border: 1px solid #16a888;
+      border-radius: 4px;
+      display: flex;
+      align-items: stretch;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 4px 4px 2px rgba(0, 0, 0, .08);
+    }
+
+    .add-widget span {
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .add-widget .arrow {
+      border-left: 1px solid #fff;
+      padding: 0 6px;
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-btn-sq {
+      background: rgba(237, 244, 254, .6);
+      border: 1px solid #16a888;
+      border-radius: 4px;
+      padding: 4px;
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, .08);
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-btn-sq img {
+      width: 22px;
+      height: 22px;
+    }
+
+    .cards-row {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .card-white {
+      background: rgba(255, 255, 255, .6);
+      border: 2px solid #fff;
+      border-radius: 4px;
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, .04);
+      padding: 16px;
+    }
+
+    .card-greet {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 170px;
+    }
+
+    .card-greet .g1 {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: #4a4a4a;
+      letter-spacing: 0.2px;
+    }
+
+    .card-greet .g2 {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #0d0d0d;
+      letter-spacing: -0.2px;
+    }
+
+    .card-greet .g3 {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #777;
+      letter-spacing: 0.3px;
+      line-height: 20px;
+    }
+
+    .card-stat {
+      width: 280px;
+      height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-stat .t1 {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #4a4a4a;
+    }
+
+    .card-stat .ic {
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+      box-shadow: inset -2px 2px 4px rgba(0, 0, 0, .16);
+    }
+
+    .card-stat .amt {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #4a4a4a;
+      letter-spacing: 0.2px;
+    }
+
+    .cards2 {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .chartcard {
+      flex: 1;
+      background: rgba(255, 255, 255, .6);
+      border: 2px solid #fff;
+      border-radius: 8px;
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, .04);
+      overflow: hidden;
+    }
+
+    .chartcard-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px 8px 16px;
+      border-bottom: 1px solid #e2e2e2;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #0d0d0d;
+    }
+
+    .chartcard-title .drop {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      font-size: 14px;
+      color: #777;
+      letter-spacing: 0.3px;
+    }
+
+    .chartcard-title .drop img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .chart-body {
+      display: flex;
+      padding: 16px;
+      gap: 16px;
+    }
+
+    .status-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: #4a4a4a;
+      letter-spacing: 0.2px;
+    }
+
+    .status-item .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .dot-green {
+      background: #16a34a;
+    }
+
+    .dot-red {
+      background: #ef4444;
+    }
+
+    .dot-orange {
+      background: #f59e0b;
+    }
+
+    .chart-img {
+      flex: 1;
+    }
+
+    .chart-img img {
+      width: 100%;
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: #777;
+      letter-spacing: 0.3px;
+      padding-top: 8px;
+    }
+
+    .timeline span {
+      flex: 1;
+      text-align: center;
+    }
+
+    .expenses-donut {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .expenses-donut img {
+      width: 106px;
+      height: 106px;
+    }
+
+    /* row 2 / row 3 */
+    .row2 {
+      display: flex;
+      gap: 24px;
+      align-items: stretch;
+      width: 1200px;
+      margin: 24px auto 0;
+    }
+
+    .large-card {
+      flex: 1;
+      background: #f5f5f7;
+      border-radius: 32px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .large-card .text {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .large-card h3 {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .large-card p {
+      font-size: 18px;
+      line-height: 28px;
+      color: var(--text-secondary);
+    }
+
+    .large-card .learn {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--blue-link);
+    }
+
+    .large-card .view {
+      flex: 1;
+      padding-left: 116px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .mock-panel {
+      width: 100%;
+      background: rgba(59, 130, 246, .1);
+      border: 1px solid rgba(59, 130, 246, .2);
+      border-radius: 16px 16px 16px 32px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mock-bar {
+      height: 32px;
+      background: #0071e3;
+      opacity: .2;
+      border-radius: 4px;
+    }
+
+    .mock-icons {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 4px;
+      opacity: .2;
+    }
+
+    .mock-icons .ic64 {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      box-shadow: inset -2px 2px 4px rgba(0, 0, 0, .16);
+    }
+
+    .mock-block {
+      height: 84px;
+      background: #0071e3;
+      opacity: .2;
+      border-radius: 12px;
+    }
+
+    .tall-card {
+      width: 384px;
+      background: #f5f5f7;
+      border-radius: 32px;
+      padding: 48px 56px;
+      display: flex;
+      align-items: center;
+    }
+
+    .tall-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 128px;
+    }
+
+    .tall-inner .icon64 {
+      width: 64px;
+      height: 64px;
+    }
+
+    .tall-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+
+    .tall-text h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .tall-text p {
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--text-secondary);
+    }
+
+    .tall-card .learn {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--blue-link);
+    }
+
+    .row3 {
+      display: flex;
+      gap: 24px;
+      width: 1200px;
+      margin: 24px auto 0;
+    }
+
+    .small-card {
+      flex: 1;
+      border-radius: 32px;
+      padding: 32px;
+    }
+
+    .small-card h4 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 28px;
+    }
+
+    .small-card p {
+      font-size: 14px;
+      line-height: 20px;
+      margin-top: 8px;
+    }
+
+    .small-card.dark {
+      background: #000;
+      color: #fff;
+    }
+
+    .small-card.dark p {
+      color: #9ca3af;
+    }
+
+    .small-card.light {
+      background: #f5f5f7;
+      color: var(--text-primary);
+    }
+
+    .small-card.light p {
+      color: var(--text-secondary);
+    }
+
+    /* ---------- Testimonial ---------- */
+    .testimonial {
+      padding: 161px 0 0;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .testimonial h2,
+    .testimonial .carousel {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: visible;
+    }
+
+    .testimonial h2 {
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: -1.4px;
+      color: var(--text-primary);
+      margin-bottom: 64px;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 32px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .film {
+      position: relative;
+      width: 980px;
+      min-width: 980px;
+      height: 600px;
+      border-radius: 32px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px 260px 80px 80px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .film img.bgphoto {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 108%;
+      top: -4%;
+      object-fit: cover;
+    }
+
+    .film .scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .85) 0%, rgba(0, 0, 0, .4) 40%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    .film .content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .quote-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .2);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quote-icon img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .film blockquote {
+      font-size: 30px;
+      font-weight: 500;
+      color: #fff;
+      line-height: 36px;
+    }
+
+    .film .name b {
+      display: block;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .film .name span {
+      font-size: 16px;
+      color: rgba(220, 220, 220, .8);
+    }
+
+    /* ---------- Why us ---------- */
+    .whyus {
+      padding: 160px 0 0;
+      width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .whyus h2 {
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: -1.4px;
+      color: var(--text-primary);
+    }
+
+    .whyus .sub {
+      font-size: 21px;
+      color: #4b5563;
+      margin-top: 16px;
+    }
+
+    .cmp-table {
+      margin-top: 81px;
+      text-align: left;
+    }
+
+    .cmp-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cmp-head .feature-label {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #4b5563;
+    }
+
+    .cmp-head .cap {
+      display: flex;
+      gap: 16px;
+    }
+
+    .cap-col {
+      width: 314.67px;
+      height: 101px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      border: 1px solid rgba(0, 0, 0, .05);
+      border-radius: 32px 32px 0 0;
+    }
+
+    .cap-col.others {
+      background: #f9fafb;
+      color: #4b5563;
+    }
+
+    .cap-col.ours {
+      background: linear-gradient(180deg, #fff, #f5f5f7);
+      color: #1e40af;
+      border-color: rgba(59, 130, 246, .1);
+    }
+
+    .cmp-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .cmp-row .row-label {
+      flex: 1;
+      padding: 39px 0;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .cmp-row .cap {
+      display: flex;
+      gap: 16px;
+    }
+
+    .cell {
+      width: 314.67px;
+      height: 105px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 16px;
+      color: #4b5563;
+      border-bottom: 1px solid rgba(0, 0, 0, .05);
+    }
+
+    .cell.others {
+      background: #f9fafb;
+    }
+
+    .cell.ours {
+      background: linear-gradient(180deg, #fff, #f5f5f7);
+    }
+
+    .cmp-row.last .row-label {
+      border-bottom: none;
+    }
+
+    .cmp-row.last .cell {
+      border-bottom: none;
+      height: 104px;
+    }
+
+    .cmp-row.last .cell.others {
+      border-radius: 0 0 0 32px;
+    }
+
+    .cmp-row.last .cell.ours {
+      border-radius: 0 0 32px 0;
+      box-shadow: 0 20px 20px rgba(0, 0, 0, .03);
+    }
+
+    /* ---------- Industry ---------- */
+    .industry {
+      padding: 160px 0 0;
+      width: 1200px;
+      margin: 0 auto;
+    }
+
+    .industry h2 {
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: -1.4px;
+      color: var(--text-primary);
+    }
+
+    .industry .sub {
+      font-size: 21px;
+      color: #4b5563;
+      margin-top: 18px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-top: 64px;
+    }
+
+    .tab {
+      padding: 14px 25px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 500;
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+
+    .tab.active {
+      background: #fff;
+      color: #1e40af;
+      padding: 16px 25px;
+      border: 1px solid rgba(0, 0, 0, .05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+    }
+
+    .industry-grid {
+      margin-top: 48px;
+      background: #f9fafb;
+      border-radius: 32px;
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .industry-pic {
+      width: 379px;
+      height: 474px;
+      position: relative;
+      border-radius: 40px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .industry-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1);
+    }
+
+    .industry-pic .caption {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .industry-pic .caption .n {
+      font-size: 20px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .62);
+    }
+
+    .industry-pic .caption .r {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #b2caff;
+    }
+
+    .industry-pic .caption .q {
+      font-size: 20px;
+      color: #fff;
+      letter-spacing: 0.4px;
+    }
+
+    .industry-dis {
+      width: 483.43px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .industry-dis .icon {
+      width: 64px;
+      height: 64px;
+      background: #fff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .industry-dis .icon img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .industry-dis h3 {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .industry-dis .desc {
+      font-size: 18px;
+      color: #4b5563;
+      line-height: 28px;
+      margin-top: 8px;
+    }
+
+    .points-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .point {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .point img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .industry-dis .learn {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--blue-link);
+    }
+
+    /* ---------- Reservation ---------- */
+    .reservation {
+      padding: 160px 0 0;
+      width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .res-text {
+      width: 560px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .res-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -1.2px;
+      color: var(--text-primary);
+    }
+
+    .res-points {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .res-point {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .res-point .ic {
+      width: 24px;
+      height: 24px;
+      border-radius: 9999px;
+      background: #dbeafe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .res-point .ic img {
+      width: 12px;
+      height: 12px;
+    }
+
+    .res-point p {
+      font-size: 16px;
+      color: #424a5b;
+      line-height: 24px;
+    }
+
+    .profiles {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .avatar-stack {
+      display: flex;
+    }
+
+    .avatar-stack img,
+    .avatar-stack .plus {
+      width: 40px;
+      height: 40px;
+      border-radius: 9999px;
+      border: 2px solid #fff;
+      margin-right: -10px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .avatar-stack .plus {
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      color: #475569;
+    }
+
+    .profiles p {
+      font-size: 16px;
+      color: #424a5b;
+    }
+
+    .try-btn {
+      background: #0f172a;
+      color: #fff;
+      border-radius: 16px;
+      padding: 18px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.48px;
+      box-shadow: 0 10px 7.5px #e2e8f0, 0 4px 3px #e2e8f0;
+      width: fit-content;
+    }
+
+    .res-graphic {
+      width: 478px;
+      height: 478px;
+      border-radius: 32px;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 1px 1px 1px #e2e8f0, 1px 1px 1px #e2e8f0;
+    }
+
+    .res-graphic svg {
+      position: absolute;
+      left: 75px;
+      top: 78px;
+      width: 318px;
+      height: 318px;
+      overflow: visible;
+      transform-origin: center;
+    }
+
+    .res-graphic path {
+      stroke-linecap: round;
+      opacity: 0.9;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawUp 5s ease-in-out infinite;
+    }
+
+    @keyframes drawUp {
+      0%, 12% {
+        stroke-dashoffset: 1000;
+        opacity: 0.15;
+      }
+      30% {
+        stroke-dashoffset: 500;
+        opacity: 0.7;
+      }
+      52% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+      72% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: 1000;
+        opacity: 0.15;
+      }
+    }
+
+    .res-graphic img.path {
+      position: absolute;
+      left: 15.69%;
+      right: 17.64%;
+      top: 16.35%;
+      bottom: 16.98%;
+      width: 64.67%;
+    }
+
+    .step {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    @keyframes step1Cycle {
+      0%, 18% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+      28% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      60% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      74%, 100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+    }
+
+    @keyframes step2Cycle {
+      0%, 24% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+      40% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      66% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      82%, 100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+    }
+
+    @keyframes step3Cycle {
+      0%, 32% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      72% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      88%, 100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.04);
+      }
+    }
+
+    .step img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .step .lbl {
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .step .lbl b {
+      font-weight: 700;
+    }
+
+    .step1 {
+      left: 20%;
+      top: 80%;
+      animation: step1Cycle 5s ease-in-out infinite, pulse 2.8s ease-in-out 1.3s infinite;
+    }
+
+    .step1 .lbl b {
+      color: #f59e0b;
+    }
+
+    .step2 {
+      left: 50%;
+      top: 50%;
+      animation: step2Cycle 5s ease-in-out infinite, pulse 2.8s ease-in-out 1.3s infinite;
+    }
+
+    .step2 .lbl b {
+      color: #f59e0b;
+    }
+
+    .step3 {
+      left: 80%;
+      top: 15%;
+      animation: step3Cycle 5s ease-in-out infinite, pulse 2.8s ease-in-out 1.3s infinite;
+    }
+
+    .step3 .lbl b {
+      color: #16a34a;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer-wrap {
+      margin-top: 242px;
+      background: #f5f5f7;
+    }
+
+    .final-cta {
+      padding: 128px 629px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: 60px;
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      color: var(--text-primary);
+      line-height: 68px;
+    }
+
+    .final-action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .final-action .btn-primary {
+      padding: 18px 40px;
+      height: auto;
+      font-size: 19px;
+      border-radius: 9999px;
+    }
+
+    .final-action p {
+      font-size: 16px;
+      color: #4b5563;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(0, 0, 0, .05);
+      padding: 40px 472px 60px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .social {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+    }
+
+    .social .email {
+      font-size: 12px;
+      color: rgba(0, 0, 0, .6);
+    }
+
+    .social .icons {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social .icons img {
+      height: 24px;
+    }
+
+    .flinks {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .fcol {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 12px;
+    }
+
+    .fcol .head {
+      font-weight: 700;
+      color: #000;
+    }
+
+    .fcol a {
+      color: rgba(0, 0, 0, .6);
+    }
+
+    .copyright {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0, 0, 0, .1);
+      font-size: 12px;
+      color: rgba(0, 0, 0, .6);
+    }
+
+    .copyright .links {
+      display: flex;
+      gap: 16px;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ================= GLOBAL NAV ================= -->
-<header class="nav-wrap">
-  <nav class="nav">
-    <div class="links">
-      <a class="logo" href="#">
-        <img src="https://www.figma.com/api/mcp/asset/e74a9b6b-e991-47d4-96d4-fb042bf71b9b.svg" alt="">
-        <span>Okovalo</span>
-      </a>
-      <a href="#">Solutions</a>
-      <a href="#">Global</a>
-      <a href="#">Support</a>
-    </div>
-    <div class="cta">
-      <a class="partner" href="#">Become a Partner</a>
-      <a class="signin" href="#">Sign in</a>
-    </div>
-  </nav>
-</header>
-
-<!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="container hero-inner">
-    <div>
-      <h1>World's #1 User Friendly <span class="sub">Business Suite</span></h1>
-      <p class="tag">Designed for your workflow — easy to use, fast to grow.</p>
-    </div>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="#">Book a demo</a>
-      <a class="btn-watch" href="#">Watch the demo
-        <img src="https://www.figma.com/api/mcp/asset/ce431b65-dbbb-4d7e-abdd-bcf1d181b935.svg" alt="">
-      </a>
-    </div>
-    <div class="company">
-      <div class="logos">
-        <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/13228ef5-0de2-4fd1-8e2b-ad4513f6a9ed.svg" alt="Anthropic"></div>
-        <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/9d6b9e8a-a8c3-4768-b2cc-2906b8252797.svg" alt="Intuit"></div>
-        <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/781cd6fa-2057-498c-9362-e0c15738a81a.svg" alt="Reddit"></div>
-        <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/95cd098b-7e95-487c-8ad9-7039004bd85f.svg" alt="Uber"></div>
-        <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/13228ef5-0de2-4fd1-8e2b-ad4513f6a9ed.svg" alt="Anthropic"></div>
-        <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/9df79d52-55d9-4776-a528-e7c0ae0504af.svg" alt="Coinbase"></div>
-        <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/edeb622f-6c64-49ec-9435-4112a76b5ceb.svg" alt="Klarna"></div>
-        <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/95cd098b-7e95-487c-8ad9-7039004bd85f.svg" alt="Uber"></div>
-        <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/4ed40cd8-d070-456b-9c81-8fadda79edc3.svg" alt="Citi"></div>
+  <!-- ================= GLOBAL NAV ================= -->
+  <header class="nav-wrap">
+    <nav class="nav">
+      <div class="links">
+        <a class="logo" href="#">
+          <img src="https://www.figma.com/api/mcp/asset/e74a9b6b-e991-47d4-96d4-fb042bf71b9b.svg" alt="">
+          <span>Okovalo</span>
+        </a>
+        <a href="#">Solutions</a>
+        <a href="#">Global</a>
+        <a href="#">Support</a>
       </div>
-      <div class="company-fade"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FEATURES ================= -->
-<section class="features">
-
-  <!-- Row 1: product preview -->
-  <div class="row1">
-    <div class="blob blob-2"><img src="https://www.figma.com/api/mcp/asset/41bee735-8b2c-480b-a8c2-4e94c2d47057.svg" alt=""></div>
-    <div class="blob blob-1"><img src="https://www.figma.com/api/mcp/asset/27d327e8-78d0-419a-b67a-364c159cd004.svg" alt=""></div>
-
-    <div class="preview">
-      <div class="topnav">
-        <div class="logo">okovalo</div>
-        <div class="icons">
-          <img src="https://www.figma.com/api/mcp/asset/cd494197-9924-467b-867c-aadde5d43024.svg" alt="">
-          <img src="https://www.figma.com/api/mcp/asset/2c82a8f5-6c9e-41bc-a560-c4dd38bdec58.svg" alt="">
-          <img src="https://www.figma.com/api/mcp/asset/b4479f04-874d-44da-84c3-004d5299d026.svg" alt="">
-        </div>
-        <div class="right icons">
-          <img src="https://www.figma.com/api/mcp/asset/36030219-df6b-42c9-a723-48a94ed13dac.svg" alt="">
-          <img src="https://www.figma.com/api/mcp/asset/5defb637-c144-4e91-a780-0ebae2b5ab6c.svg" alt="">
-          <img src="https://www.figma.com/api/mcp/asset/9480d6a1-8b24-4d25-993e-a90497587001.svg" alt="">
-          <img src="https://www.figma.com/api/mcp/asset/b3114dc9-cdc2-45a7-8a64-f58330aefbed.svg" alt="">
-        </div>
+      <div class="cta">
+        <a class="partner" href="#">Become a Partner</a>
+        <a class="signin" href="#">Sign in</a>
       </div>
+    </nav>
+  </header>
 
-      <div class="mainbody">
-        <div class="sidebar">
-          <div class="side-menu">
-            <div class="side-item active"><span class="ic"><img src="https://www.figma.com/api/mcp/asset/4beb5191-32ee-48be-b170-9dcb8642aab5.svg" style="width:16px;height:16px" alt=""></span>Home</div>
-            <div class="side-item"><span class="ic"><img src="https://www.figma.com/api/mcp/asset/09ff53ac-8903-4394-8d67-54e1d467a1c8.svg" style="width:16px;height:16px" alt=""></span>Sales</div>
-            <div class="side-item"><span class="ic"><img src="https://www.figma.com/api/mcp/asset/542d84d3-06f0-4c23-8dc8-b1fc9de6e2ba.svg" style="width:16px;height:16px" alt=""></span>Purchase</div>
-            <div class="side-item"><span class="ic"><img src="https://www.figma.com/api/mcp/asset/2aad4494-42f0-4a85-ba95-9736e55e9e60.svg" style="width:16px;height:16px" alt=""></span>Account</div>
-            <div class="side-item"><span class="ic"><img src="https://www.figma.com/api/mcp/asset/bdea6b37-4662-4f36-8bf0-3013aeee9363.svg" style="width:20px;height:20px" alt=""></span>Project</div>
-            <div class="side-item"><span class="ic"><img src="https://www.figma.com/api/mcp/asset/c7f9cd69-fcb9-42f8-a28d-6a9891d41b6d.svg" style="width:16px;height:16px" alt=""></span>Inventory</div>
-            <div class="side-item"><span class="ic"><img src="https://www.figma.com/api/mcp/asset/75e2133f-b9ee-445f-a3bf-208b8829257f.svg" style="width:16px;height:16px" alt=""></span>Taxes</div>
-            <div class="side-item"><span class="ic"><img src="https://www.figma.com/api/mcp/asset/6806b74d-2c49-4d26-a7eb-3a6b7e8542ca.svg" style="width:16px;height:16px" alt=""></span>Report</div>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h1>World's #1 User Friendly <span class="sub">Business Suite</span></h1>
+        <p class="tag">Designed for your workflow — easy to use, fast to grow.</p>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#">Book a demo</a>
+        <a class="btn-watch" href="#">Watch the demo
+          <img src="https://www.figma.com/api/mcp/asset/ce431b65-dbbb-4d7e-abdd-bcf1d181b935.svg" alt="">
+        </a>
+      </div>
+      <div class="company">
+        <div class="logos">
+          <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/13228ef5-0de2-4fd1-8e2b-ad4513f6a9ed.svg"
+              alt="Anthropic"></div>
+          <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/9d6b9e8a-a8c3-4768-b2cc-2906b8252797.svg"
+              alt="Intuit"></div>
+          <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/781cd6fa-2057-498c-9362-e0c15738a81a.svg"
+              alt="Reddit"></div>
+          <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/95cd098b-7e95-487c-8ad9-7039004bd85f.svg"
+              alt="Uber"></div>
+          <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/13228ef5-0de2-4fd1-8e2b-ad4513f6a9ed.svg"
+              alt="Anthropic"></div>
+          <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/9df79d52-55d9-4776-a528-e7c0ae0504af.svg"
+              alt="Coinbase"></div>
+          <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/edeb622f-6c64-49ec-9435-4112a76b5ceb.svg"
+              alt="Klarna"></div>
+          <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/95cd098b-7e95-487c-8ad9-7039004bd85f.svg"
+              alt="Uber"></div>
+          <div class="logo-item"><img src="https://www.figma.com/api/mcp/asset/4ed40cd8-d070-456b-9c81-8fadda79edc3.svg"
+              alt="Citi"></div>
+        </div>
+        <div class="company-fade"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section class="features">
+
+    <!-- Row 1: product preview -->
+    <div class="row1">
+      <div class="blob blob-2"><img src="https://www.figma.com/api/mcp/asset/41bee735-8b2c-480b-a8c2-4e94c2d47057.svg"
+          alt=""></div>
+      <div class="blob blob-1"><img src="https://www.figma.com/api/mcp/asset/27d327e8-78d0-419a-b67a-364c159cd004.svg"
+          alt=""></div>
+
+      <div class="preview">
+        <div class="topnav">
+          <div class="logo">okovalo</div>
+          <div class="icons">
+            <img src="https://www.figma.com/api/mcp/asset/cd494197-9924-467b-867c-aadde5d43024.svg" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/2c82a8f5-6c9e-41bc-a560-c4dd38bdec58.svg" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/b4479f04-874d-44da-84c3-004d5299d026.svg" alt="">
           </div>
-          <div class="collapse-row">
-            <img src="https://www.figma.com/api/mcp/asset/5a819e41-447b-481a-bc92-dbfe86490d96.svg" alt="">
-            <span class="collapse-icon"><img src="https://www.figma.com/api/mcp/asset/f1429751-88c7-41fc-a434-61ad3c4eb2ff.svg" alt=""></span>
+          <div class="right icons">
+            <img src="https://www.figma.com/api/mcp/asset/36030219-df6b-42c9-a723-48a94ed13dac.svg" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/5defb637-c144-4e91-a780-0ebae2b5ab6c.svg" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9480d6a1-8b24-4d25-993e-a90497587001.svg" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/b3114dc9-cdc2-45a7-8a64-f58330aefbed.svg" alt="">
           </div>
         </div>
 
-        <div class="body-content">
-          <div class="page-header">
-            <h2>Deshboard</h2>
-            <div class="ctas">
-              <div class="add-widget"><span>Add Widget</span><span class="arrow">
-                <img src="https://www.figma.com/api/mcp/asset/6d78c654-7332-489e-a704-2aff9248f400.svg" style="width:16px;height:16px;transform:rotate(180deg)" alt="">
-              </span></div>
-              <div class="icon-btn-sq"><img src="https://www.figma.com/api/mcp/asset/e6aeda6d-1677-4604-83c9-7b62d2d8ee77.svg" alt=""></div>
-              <div class="icon-btn-sq"><img src="https://www.figma.com/api/mcp/asset/f61f4c1a-9736-4087-a8ea-c299482c3608.svg" alt=""></div>
+        <div class="mainbody">
+          <div class="sidebar">
+            <div class="side-menu">
+              <div class="side-item active"><span class="ic"><img
+                    src="https://www.figma.com/api/mcp/asset/4beb5191-32ee-48be-b170-9dcb8642aab5.svg"
+                    style="width:16px;height:16px" alt=""></span>Home</div>
+              <div class="side-item"><span class="ic"><img
+                    src="https://www.figma.com/api/mcp/asset/09ff53ac-8903-4394-8d67-54e1d467a1c8.svg"
+                    style="width:16px;height:16px" alt=""></span>Sales</div>
+              <div class="side-item"><span class="ic"><img
+                    src="https://www.figma.com/api/mcp/asset/542d84d3-06f0-4c23-8dc8-b1fc9de6e2ba.svg"
+                    style="width:16px;height:16px" alt=""></span>Purchase</div>
+              <div class="side-item"><span class="ic"><img
+                    src="https://www.figma.com/api/mcp/asset/2aad4494-42f0-4a85-ba95-9736e55e9e60.svg"
+                    style="width:16px;height:16px" alt=""></span>Account</div>
+              <div class="side-item"><span class="ic"><img
+                    src="https://www.figma.com/api/mcp/asset/bdea6b37-4662-4f36-8bf0-3013aeee9363.svg"
+                    style="width:20px;height:20px" alt=""></span>Project</div>
+              <div class="side-item"><span class="ic"><img
+                    src="https://www.figma.com/api/mcp/asset/c7f9cd69-fcb9-42f8-a28d-6a9891d41b6d.svg"
+                    style="width:16px;height:16px" alt=""></span>Inventory</div>
+              <div class="side-item"><span class="ic"><img
+                    src="https://www.figma.com/api/mcp/asset/75e2133f-b9ee-445f-a3bf-208b8829257f.svg"
+                    style="width:16px;height:16px" alt=""></span>Taxes</div>
+              <div class="side-item"><span class="ic"><img
+                    src="https://www.figma.com/api/mcp/asset/6806b74d-2c49-4d26-a7eb-3a6b7e8542ca.svg"
+                    style="width:16px;height:16px" alt=""></span>Report</div>
+            </div>
+            <div class="collapse-row">
+              <img src="https://www.figma.com/api/mcp/asset/5a819e41-447b-481a-bc92-dbfe86490d96.svg" alt="">
+              <span class="collapse-icon"><img
+                  src="https://www.figma.com/api/mcp/asset/f1429751-88c7-41fc-a434-61ad3c4eb2ff.svg" alt=""></span>
             </div>
           </div>
 
-          <div class="cards-row">
-            <div class="card-white card-greet">
-              <div>
-                <div class="g1">Greetings !</div>
-                <div class="g2">User {name}</div>
+          <div class="body-content">
+            <div class="page-header">
+              <h2>Deshboard</h2>
+              <div class="ctas">
+                <div class="add-widget"><span>Add Widget</span><span class="arrow">
+                    <img src="https://www.figma.com/api/mcp/asset/6d78c654-7332-489e-a704-2aff9248f400.svg"
+                      style="width:16px;height:16px;transform:rotate(180deg)" alt="">
+                  </span></div>
+                <div class="icon-btn-sq"><img
+                    src="https://www.figma.com/api/mcp/asset/e6aeda6d-1677-4604-83c9-7b62d2d8ee77.svg" alt=""></div>
+                <div class="icon-btn-sq"><img
+                    src="https://www.figma.com/api/mcp/asset/f61f4c1a-9736-4087-a8ea-c299482c3608.svg" alt=""></div>
               </div>
-              <div class="g3">{Day}, {Date}<br>{Month}</div>
             </div>
-            <div class="card-white card-stat">
-              <div class="t1">Total Receivables</div>
-              <div class="ic"><img src="https://www.figma.com/api/mcp/asset/94b4d82d-0a30-4f76-ae12-2a3ed173a037.svg" style="width:48px;height:48px" alt=""></div>
-              <div class="amt">{Amount} {Currency}</div>
-            </div>
-            <div class="card-white card-stat">
-              <div class="t1">Total Sales</div>
-              <div class="ic" style="background:linear-gradient(134deg,#9ed8f0,#0ea3ff);display:flex;align-items:center;justify-content:center;">
-                <img src="https://www.figma.com/api/mcp/asset/6950ae69-5b37-4d09-8135-0cf0550fb857.svg" style="width:30px;height:30px" alt="">
-              </div>
-              <div class="amt">{Amount} {Currency}</div>
-            </div>
-          </div>
 
-          <div class="cards2">
-            <div class="chartcard" style="flex:1.85;">
-              <div class="chartcard-title">
-                Cash flow
-                <span class="drop">Last 6 months <img src="https://www.figma.com/api/mcp/asset/7069a896-f1ea-4e7a-82e0-22ccd26d979b.svg" alt=""></span>
-              </div>
-              <div class="chart-body">
-                <div class="status-list">
-                  <div class="status-item"><span class="dot dot-green"></span>Received</div>
-                  <div class="status-item"><span class="dot dot-red"></span>Payment</div>
+            <div class="cards-row">
+              <div class="card-white card-greet">
+                <div>
+                  <div class="g1">Greetings !</div>
+                  <div class="g2">User {name}</div>
                 </div>
-                <div class="chart-img">
-                  <img src="https://www.figma.com/api/mcp/asset/fb6f3f5d-29fc-433e-9665-6bb17ea44910.svg" alt="" style="width:100%;opacity:0;height:1px;">
-                  <svg viewBox="0 0 413 231" width="100%" style="display:block">
-                    <path d="M0,120 C60,40 110,190 175,120 C230,60 280,180 358,90" fill="none" stroke="#16a34a" stroke-width="3"/>
-                    <path d="M0,150 C60,190 110,60 175,150 C230,200 280,80 358,150" fill="none" stroke="#ef4444" stroke-width="3"/>
-                  </svg>
-                  <div class="timeline">
-                    <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+                <div class="g3">{Day}, {Date}<br>{Month}</div>
+              </div>
+              <div class="card-white card-stat">
+                <div class="t1">Total Receivables</div>
+                <div class="ic"><img src="https://www.figma.com/api/mcp/asset/94b4d82d-0a30-4f76-ae12-2a3ed173a037.svg"
+                    style="width:48px;height:48px" alt=""></div>
+                <div class="amt">{Amount} {Currency}</div>
+              </div>
+              <div class="card-white card-stat">
+                <div class="t1">Total Sales</div>
+                <div class="ic"
+                  style="background:linear-gradient(134deg,#9ed8f0,#0ea3ff);display:flex;align-items:center;justify-content:center;">
+                  <img src="https://www.figma.com/api/mcp/asset/6950ae69-5b37-4d09-8135-0cf0550fb857.svg"
+                    style="width:30px;height:30px" alt="">
+                </div>
+                <div class="amt">{Amount} {Currency}</div>
+              </div>
+            </div>
+
+            <div class="cards2">
+              <div class="chartcard" style="flex:1.85;">
+                <div class="chartcard-title">
+                  Cash flow
+                  <span class="drop">Last 6 months <img
+                      src="https://www.figma.com/api/mcp/asset/7069a896-f1ea-4e7a-82e0-22ccd26d979b.svg" alt=""></span>
+                </div>
+                <div class="chart-body">
+                  <div class="status-list">
+                    <div class="status-item"><span class="dot dot-green"></span>Received</div>
+                    <div class="status-item"><span class="dot dot-red"></span>Payment</div>
+                  </div>
+                  <div class="chart-img">
+                    <img src="https://www.figma.com/api/mcp/asset/fb6f3f5d-29fc-433e-9665-6bb17ea44910.svg" alt=""
+                      style="width:100%;opacity:0;height:1px;">
+                    <svg viewBox="0 0 413 231" width="100%" style="display:block">
+                      <path d="M0,120 C60,40 110,190 175,120 C230,60 280,180 358,90" fill="none" stroke="#16a34a"
+                        stroke-width="3" />
+                      <path d="M0,150 C60,190 110,60 175,150 C230,200 280,80 358,150" fill="none" stroke="#ef4444"
+                        stroke-width="3" />
+                    </svg>
+                    <div class="timeline">
+                      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="chartcard" style="flex:1;">
-              <div class="chartcard-title">
-                Top Expenses
-                <span class="drop">Last 3 months <img src="https://www.figma.com/api/mcp/asset/7069a896-f1ea-4e7a-82e0-22ccd26d979b.svg" alt=""></span>
-              </div>
-              <div style="padding:16px;display:flex;flex-direction:column;gap:8px;">
-                <div class="status-item"><span class="dot dot-green"></span>Payment</div>
-                <div class="status-item"><span class="dot dot-red"></span>Advertising</div>
-                <div class="status-item"><span class="dot dot-orange"></span>Marketing</div>
-              </div>
-              <div class="expenses-donut">
-                <img src="https://www.figma.com/api/mcp/asset/fb6f3f5d-29fc-433e-9665-6bb17ea44910.svg" alt="">
+              <div class="chartcard" style="flex:1;">
+                <div class="chartcard-title">
+                  Top Expenses
+                  <span class="drop">Last 3 months <img
+                      src="https://www.figma.com/api/mcp/asset/7069a896-f1ea-4e7a-82e0-22ccd26d979b.svg" alt=""></span>
+                </div>
+                <div style="padding:16px;display:flex;flex-direction:column;gap:8px;">
+                  <div class="status-item"><span class="dot dot-green"></span>Payment</div>
+                  <div class="status-item"><span class="dot dot-red"></span>Advertising</div>
+                  <div class="status-item"><span class="dot dot-orange"></span>Marketing</div>
+                </div>
+                <div class="expenses-donut">
+                  <img src="https://www.figma.com/api/mcp/asset/fb6f3f5d-29fc-433e-9665-6bb17ea44910.svg" alt="">
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Row 2: large + tall card -->
-  <div class="row2">
-    <div class="large-card">
-      <div class="text">
-        <h3>One Suite. Zero Chaos.</h3>
-        <p>Replace chaotic tools and disconnected processes with one simple system—your team learns it fast, works without friction, and scales as you grow.</p>
-        <div class="learn">Learn more &gt;</div>
-      </div>
-      <div class="view">
-        <div class="mock-panel">
-          <div class="mock-bar"></div>
-          <div class="mock-icons">
-            <div class="ic64" style="background:linear-gradient(137deg,#24f4e9 2%,#0277e7 102%)"></div>
-            <div class="ic64" style="background:linear-gradient(134deg,#9ed8f0,#0ea3ff)"></div>
-            <div class="ic64" style="background:linear-gradient(135deg,#fed13f,#fe712f)"></div>
-            <div class="ic64" style="background:linear-gradient(134deg,#db802b 2%,#f54188 100%)"></div>
-            <div class="ic64" style="background:linear-gradient(135deg,#c9d8ff,#7a9cff)"></div>
-            <div class="ic64" style="background:linear-gradient(135deg,#b6f236 6%,#21bb14 94%)"></div>
-            <div class="ic64" style="background:linear-gradient(135deg,#aef0ff,#f77c9d)"></div>
+    <!-- Row 2: large + tall card -->
+    <div class="row2">
+      <div class="large-card">
+        <div class="text">
+          <h3>One Suite. Zero Chaos.</h3>
+          <p>Replace chaotic tools and disconnected processes with one simple system—your team learns it fast, works
+            without friction, and scales as you grow.</p>
+          <div class="learn">Learn more &gt;</div>
+        </div>
+        <div class="view">
+          <div class="mock-panel">
+            <div class="mock-bar"></div>
+            <div class="mock-icons">
+              <div class="ic64" style="background:linear-gradient(137deg,#24f4e9 2%,#0277e7 102%)"></div>
+              <div class="ic64" style="background:linear-gradient(134deg,#9ed8f0,#0ea3ff)"></div>
+              <div class="ic64" style="background:linear-gradient(135deg,#fed13f,#fe712f)"></div>
+              <div class="ic64" style="background:linear-gradient(134deg,#db802b 2%,#f54188 100%)"></div>
+              <div class="ic64" style="background:linear-gradient(135deg,#c9d8ff,#7a9cff)"></div>
+              <div class="ic64" style="background:linear-gradient(135deg,#b6f236 6%,#21bb14 94%)"></div>
+              <div class="ic64" style="background:linear-gradient(135deg,#aef0ff,#f77c9d)"></div>
+            </div>
+            <div class="mock-block"></div>
           </div>
-          <div class="mock-block"></div>
+        </div>
+      </div>
+      <div class="tall-card">
+        <div class="tall-inner">
+          <div class="tall-text">
+            <img class="icon64" src="https://www.figma.com/api/mcp/asset/7d14c234-09c1-4d13-9b8e-371fe8165fec.svg"
+              alt="">
+            <h3>Secure by Design.</h3>
+            <p>No clutter. No confusion. Just a secure system your team understands instantly—with role-based access,
+              controlled approvals, and visibility you can trust.</p>
+          </div>
+          <div class="learn">Learn more &gt;</div>
         </div>
       </div>
     </div>
-    <div class="tall-card">
-      <div class="tall-inner">
-        <div class="tall-text">
-          <img class="icon64" src="https://www.figma.com/api/mcp/asset/7d14c234-09c1-4d13-9b8e-371fe8165fec.svg" alt="">
-          <h3>Secure by Design.</h3>
-          <p>No clutter. No confusion. Just a secure system your team understands instantly—with role-based access, controlled approvals, and visibility you can trust.</p>
+
+    <!-- Row 3: small cards -->
+    <div class="row3">
+      <div class="small-card dark">
+        <h4>Global Ready.</h4>
+        <p>Cover every industries globally.</p>
+      </div>
+      <div class="small-card light">
+        <h4>Built For You.</h4>
+        <p>Tailored to your business and grows with you.</p>
+      </div>
+      <div class="small-card light">
+        <h4>Pay When Satisfied.</h4>
+        <p>We earn trust before money.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIAL ================= -->
+  <section class="testimonial">
+    <h2>Voices of Success.</h2>
+    <div class="carousel">
+      <div class="film">
+        <img class="bgphoto" src="https://picsum.photos/seed/okovalo-office/980/600" alt="">
+        <div class="scrim"></div>
+        <div class="content">
+          <div class="quote-icon"><img
+              src="https://www.figma.com/api/mcp/asset/28c23a06-53e8-425d-ab5b-62431fc0bbc0.svg" alt=""></div>
+          <blockquote>"Okovalo redefined how our global teams collaborate. It's the most polished tool we've ever used."
+          </blockquote>
+          <div class="name"><b>Jordan Smith</b><span>Director of Operations, Vertex Group</span></div>
+        </div>
+      </div>
+      <div class="film">
+        <img class="bgphoto" src="https://picsum.photos/seed/okovalo-team/980/600" alt="">
+        <div class="scrim"></div>
+        <div class="content">
+          <div class="quote-icon"><img
+              src="https://www.figma.com/api/mcp/asset/28c23a06-53e8-425d-ab5b-62431fc0bbc0.svg" alt=""></div>
+          <blockquote>"The efficiency gains were immediate. We saved 40 hours a week on administration alone."
+          </blockquote>
+          <div class="name"><b>Aria Chen</b><span>CEO, Nova E-commerce</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY US ================= -->
+  <section class="whyus">
+    <h2>The gap is obvious</h2>
+    <p class="sub">See us side by side — others complicate, we simplify.</p>
+
+    <div class="cmp-table">
+      <div class="cmp-head">
+        <div class="feature-label">Feature</div>
+        <div class="cap">
+          <div class="cap-col others">Others</div>
+          <div class="cap-col ours">Okovalo</div>
+        </div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="row-label">Interface</div>
+        <div class="cap">
+          <div class="cell others">Cluttered &amp; Complex</div>
+          <div class="cell ours">Minimalist &amp; Intuitive</div>
+        </div>
+      </div>
+      <div class="cmp-row">
+        <div class="row-label">Implementation</div>
+        <div class="cap">
+          <div class="cell others">Months</div>
+          <div class="cell ours">Days</div>
+        </div>
+      </div>
+      <div class="cmp-row">
+        <div class="row-label">Pricing</div>
+        <div class="cap">
+          <div class="cell others">Hidden costs</div>
+          <div class="cell ours">Transparent</div>
+        </div>
+      </div>
+      <div class="cmp-row last">
+        <div class="row-label">Useability</div>
+        <div class="cap">
+          <div class="cell others">Requires customization</div>
+          <div class="cell ours">Fully Tailored</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INDUSTRY ================= -->
+  <section class="industry">
+    <h2>Every Industry. Zero Compromise.</h2>
+    <p class="sub">Crafted by business experts. Built to optimize.</p>
+
+    <div class="tabs">
+      <div class="tab active">Ecommerce</div>
+      <div class="tab">Logistics</div>
+      <div class="tab">Real Estate</div>
+      <div class="tab">Fintech</div>
+    </div>
+
+    <div class="industry-grid">
+      <div class="industry-pic">
+        <img src="https://picsum.photos/seed/okovalo-expert/379/474" alt="">
+        <div class="caption">
+          <div class="n">Dr. Elena Vos</div>
+          <div class="r">Chief Sales Officer (CSO)</div>
+          <div class="q">"Sales is not about closing deals; it's about opening long-term relationships."</div>
+        </div>
+      </div>
+      <div class="industry-dis">
+        <div class="icon"><img src="https://www.figma.com/api/mcp/asset/402f0610-200f-48dc-bcee-44bd1c08d200.svg"
+            alt=""></div>
+        <div>
+          <h3>Sell more. Stress less.</h3>
+          <p class="desc">From order to delivery — one seamless flow, no gaps.</p>
+        </div>
+        <div class="points-list">
+          <div class="point"><img src="https://www.figma.com/api/mcp/asset/1dc6faa7-78d9-4ff7-825d-4120aba09840.svg"
+              alt="">Auto Inventory</div>
+          <div class="point"><img src="https://www.figma.com/api/mcp/asset/1dc6faa7-78d9-4ff7-825d-4120aba09840.svg"
+              alt="">Zero Updates Manually</div>
+          <div class="point"><img src="https://www.figma.com/api/mcp/asset/1dc6faa7-78d9-4ff7-825d-4120aba09840.svg"
+              alt="">Real-Time Visibility</div>
         </div>
         <div class="learn">Learn more &gt;</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Row 3: small cards -->
-  <div class="row3">
-    <div class="small-card dark">
-      <h4>Global Ready.</h4>
-      <p>Cover every industries globally.</p>
-    </div>
-    <div class="small-card light">
-      <h4>Built For You.</h4>
-      <p>Tailored to your business and grows with you.</p>
-    </div>
-    <div class="small-card light">
-      <h4>Pay When Satisfied.</h4>
-      <p>We earn trust before money.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= TESTIMONIAL ================= -->
-<section class="testimonial">
-  <h2>Voices of Success.</h2>
-  <div class="carousel">
-    <div class="film">
-      <img class="bgphoto" src="https://picsum.photos/seed/okovalo-office/980/600" alt="">
-      <div class="scrim"></div>
-      <div class="content">
-        <div class="quote-icon"><img src="https://www.figma.com/api/mcp/asset/28c23a06-53e8-425d-ab5b-62431fc0bbc0.svg" alt=""></div>
-        <blockquote>"Okovalo redefined how our global teams collaborate. It's the most polished tool we've ever used."</blockquote>
-        <div class="name"><b>Jordan Smith</b><span>Director of Operations, Vertex Group</span></div>
-      </div>
-    </div>
-    <div class="film">
-      <img class="bgphoto" src="https://picsum.photos/seed/okovalo-team/980/600" alt="">
-      <div class="scrim"></div>
-      <div class="content">
-        <div class="quote-icon"><img src="https://www.figma.com/api/mcp/asset/28c23a06-53e8-425d-ab5b-62431fc0bbc0.svg" alt=""></div>
-        <blockquote>"The efficiency gains were immediate. We saved 40 hours a week on administration alone."</blockquote>
-        <div class="name"><b>Aria Chen</b><span>CEO, Nova E-commerce</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= WHY US ================= -->
-<section class="whyus">
-  <h2>The gap is obvious</h2>
-  <p class="sub">See us side by side — others complicate, we simplify.</p>
-
-  <div class="cmp-table">
-    <div class="cmp-head">
-      <div class="feature-label">Feature</div>
-      <div class="cap">
-        <div class="cap-col others">Others</div>
-        <div class="cap-col ours">Okovalo</div>
-      </div>
-    </div>
-
-    <div class="cmp-row">
-      <div class="row-label">Interface</div>
-      <div class="cap">
-        <div class="cell others">Cluttered &amp; Complex</div>
-        <div class="cell ours">Minimalist &amp; Intuitive</div>
-      </div>
-    </div>
-    <div class="cmp-row">
-      <div class="row-label">Implementation</div>
-      <div class="cap">
-        <div class="cell others">Months</div>
-        <div class="cell ours">Days</div>
-      </div>
-    </div>
-    <div class="cmp-row">
-      <div class="row-label">Pricing</div>
-      <div class="cap">
-        <div class="cell others">Hidden costs</div>
-        <div class="cell ours">Transparent</div>
-      </div>
-    </div>
-    <div class="cmp-row last">
-      <div class="row-label">Useability</div>
-      <div class="cap">
-        <div class="cell others">Requires customization</div>
-        <div class="cell ours">Fully Tailored</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= INDUSTRY ================= -->
-<section class="industry">
-  <h2>Every Industry. Zero Compromise.</h2>
-  <p class="sub">Crafted by business experts. Built to optimize.</p>
-
-  <div class="tabs">
-    <div class="tab active">Ecommerce</div>
-    <div class="tab">Logistics</div>
-    <div class="tab">Real Estate</div>
-    <div class="tab">Fintech</div>
-  </div>
-
-  <div class="industry-grid">
-    <div class="industry-pic">
-      <img src="https://picsum.photos/seed/okovalo-expert/379/474" alt="">
-      <div class="caption">
-        <div class="n">Dr. Elena Vos</div>
-        <div class="r">Chief Sales Officer (CSO)</div>
-        <div class="q">"Sales is not about closing deals; it's about opening long-term relationships."</div>
-      </div>
-    </div>
-    <div class="industry-dis">
-      <div class="icon"><img src="https://www.figma.com/api/mcp/asset/402f0610-200f-48dc-bcee-44bd1c08d200.svg" alt=""></div>
-      <div>
-        <h3>Sell more. Stress less.</h3>
-        <p class="desc">From order to delivery — one seamless flow, no gaps.</p>
-      </div>
-      <div class="points-list">
-        <div class="point"><img src="https://www.figma.com/api/mcp/asset/1dc6faa7-78d9-4ff7-825d-4120aba09840.svg" alt="">Auto Inventory</div>
-        <div class="point"><img src="https://www.figma.com/api/mcp/asset/1dc6faa7-78d9-4ff7-825d-4120aba09840.svg" alt="">Zero Updates Manually</div>
-        <div class="point"><img src="https://www.figma.com/api/mcp/asset/1dc6faa7-78d9-4ff7-825d-4120aba09840.svg" alt="">Real-Time Visibility</div>
-      </div>
-      <div class="learn">Learn more &gt;</div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= RESERVATION ================= -->
-<section class="reservation">
-  <div class="res-text">
-    <h2>Meet an Expert.</h2>
-    <div class="res-points">
-      <div class="res-point">
-        <span class="ic"><img src="https://www.figma.com/api/mcp/asset/028ca9e9-331c-4d22-88bf-a762094a0125.svg" alt=""></span>
-        <p>30 minutes to map your flow—see how everything can grow.</p>
-      </div>
-      <div class="res-point">
-        <span class="ic"><img src="https://www.figma.com/api/mcp/asset/028ca9e9-331c-4d22-88bf-a762094a0125.svg" alt=""></span>
-        <p>Clear ROI on the call—know the impact before you start at all.</p>
-      </div>
-    </div>
-    <div class="profiles">
-      <div class="avatar-stack">
-        <img src="https://i.pravatar.cc/80?img=12" alt="">
-        <img src="https://i.pravatar.cc/80?img=32" alt="">
-        <img src="https://i.pravatar.cc/80?img=45" alt="">
-        <span class="plus">+12</span>
-      </div>
-      <p>1,344+ businesses have already met our experts.</p>
-    </div>
-    <a class="try-btn" href="#">Try For Free</a>
-  </div>
-
-  <div class="res-graphic">
-    <svg viewBox="0 0 318 318" style="position:absolute;left:75px;top:78px;width:318px;height:318px;" fill="none">
-      <path d="M20,290 C90,250 130,150 160,150 C190,150 230,60 300,20" stroke="#0071e3" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
-    </svg>
-    <div class="step step1">
-      <img src="https://www.figma.com/api/mcp/asset/467bb25d-21eb-4a87-835f-551a02605ac0.svg" alt="">
-      <div class="lbl"><b>Setup</b> in morning</div>
-    </div>
-    <div class="step step2">
-      <img src="https://www.figma.com/api/mcp/asset/467bb25d-21eb-4a87-835f-551a02605ac0.svg" alt="">
-      <div class="lbl"><b>Test</b> in afternoon</div>
-    </div>
-    <div class="step step3">
-      <div class="lbl"><b>GO Live</b> in evening</div>
-      <img src="https://www.figma.com/api/mcp/asset/467bb25d-21eb-4a87-835f-551a02605ac0.svg" alt="">
-    </div>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<div class="footer-wrap">
-  <div class="final-cta">
-    <h2>Let Results Decide</h2>
-    <div class="final-action">
-      <a class="btn-primary" href="#">Start For Free</a>
-      <p>Pay when you're satisfied.</p>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="social">
-        <div class="email">Email : support@okovalo.com</div>
-        <div class="icons">
-          <img src="https://www.figma.com/api/mcp/asset/b42f4bff-85b3-4af1-8987-7863d86eefa6.svg" alt="Facebook">
-          <img src="https://www.figma.com/api/mcp/asset/59c2cc15-bbb6-4381-8652-4a46c7e335e3.svg" alt="LinkedIn">
+  <!-- ================= RESERVATION ================= -->
+  <section class="reservation">
+    <div class="res-text">
+      <h2>Meet an Expert.</h2>
+      <div class="res-points">
+        <div class="res-point">
+          <span class="ic"><img src="https://www.figma.com/api/mcp/asset/028ca9e9-331c-4d22-88bf-a762094a0125.svg"
+              alt=""></span>
+          <p>30 minutes to map your flow—see how everything can grow.</p>
+        </div>
+        <div class="res-point">
+          <span class="ic"><img src="https://www.figma.com/api/mcp/asset/028ca9e9-331c-4d22-88bf-a762094a0125.svg"
+              alt=""></span>
+          <p>Clear ROI on the call—know the impact before you start at all.</p>
         </div>
       </div>
-      <div class="flinks">
-        <div class="fcol">
-          <div class="head">Product</div>
-          <a href="#">Okovalo One</a>
-          <a href="#">Global Suite</a>
-          <a href="#">Security</a>
+      <div class="profiles">
+        <div class="avatar-stack">
+          <img src="https://i.pravatar.cc/80?img=12" alt="">
+          <img src="https://i.pravatar.cc/80?img=32" alt="">
+          <img src="https://i.pravatar.cc/80?img=45" alt="">
+          <span class="plus">+12</span>
         </div>
-        <div class="fcol">
-          <div class="head">Okovalo Store</div>
-          <a href="#">Find a Partner</a>
-          <a href="#">Special Offers</a>
-          <a href="#">Education</a>
-        </div>
-        <div class="fcol">
-          <div class="head">For Business</div>
-          <a href="#">Enterprise</a>
-          <a href="#">Startups</a>
-        </div>
-        <div class="fcol">
-          <div class="head">Account</div>
-          <a href="#">Manage ID</a>
-          <a href="#">Billing</a>
-        </div>
+        <p>1,344+ businesses have already met our experts.</p>
       </div>
-      <div class="copyright">
-        <div>Copyright © 2026 Okovalo Inc. All rights reserved.</div>
-        <div class="links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Site Map</a>
-        </div>
+      <a class="try-btn" href="#">Try For Free</a>
+    </div>
+
+    <div class="res-graphic">
+      <svg viewBox="0 0 318 318" fill="none" aria-label="growth path">
+        <path d="M20,290 C90,250 130,150 160,150 C190,150 230,60 300,20" stroke="#0071e3" stroke-width="2" opacity="0.9"/>
+      </svg>
+      <div class="step step1">
+        <img src="https://www.figma.com/api/mcp/asset/467bb25d-21eb-4a87-835f-551a02605ac0.svg" alt="">
+        <div class="lbl"><b>Setup</b> in morning</div>
+      </div>
+      <div class="step step2">
+        <img src="https://www.figma.com/api/mcp/asset/467bb25d-21eb-4a87-835f-551a02605ac0.svg" alt="">
+        <div class="lbl"><b>Test</b> in afternoon</div>
+      </div>
+      <div class="step step3">
+        <div class="lbl"><b>GO Live</b> in evening</div>
+        <img src="https://www.figma.com/api/mcp/asset/467bb25d-21eb-4a87-835f-551a02605ac0.svg" alt="">
       </div>
     </div>
-  </footer>
-</div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <div class="footer-wrap">
+    <div class="final-cta">
+      <h2>Let Results Decide</h2>
+      <div class="final-action">
+        <a class="btn-primary" href="#">Start For Free</a>
+        <p>Pay when you're satisfied.</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="social">
+          <div class="email">Email : support@okovalo.com</div>
+          <div class="icons">
+            <img src="https://www.figma.com/api/mcp/asset/b42f4bff-85b3-4af1-8987-7863d86eefa6.svg" alt="Facebook">
+            <img src="https://www.figma.com/api/mcp/asset/59c2cc15-bbb6-4381-8652-4a46c7e335e3.svg" alt="LinkedIn">
+          </div>
+        </div>
+        <div class="flinks">
+          <div class="fcol">
+            <div class="head">Product</div>
+            <a href="#">Okovalo One</a>
+            <a href="#">Global Suite</a>
+            <a href="#">Security</a>
+          </div>
+          <div class="fcol">
+            <div class="head">Okovalo Store</div>
+            <a href="#">Find a Partner</a>
+            <a href="#">Special Offers</a>
+            <a href="#">Education</a>
+          </div>
+          <div class="fcol">
+            <div class="head">For Business</div>
+            <a href="#">Enterprise</a>
+            <a href="#">Startups</a>
+          </div>
+          <div class="fcol">
+            <div class="head">Account</div>
+            <a href="#">Manage ID</a>
+            <a href="#">Billing</a>
+          </div>
+        </div>
+        <div class="copyright">
+          <div>Copyright © 2026 Okovalo Inc. All rights reserved.</div>
+          <div class="links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Site Map</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 
 </body>
+
 </html>
